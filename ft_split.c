@@ -88,10 +88,7 @@ char	**ft_split(char const *s, char c)
 			pos++;
 		split[i] = ft_extract_word(s, c, &pos);
 		if (!split[i])
-		{
-			ft_free_split(split, i);
-			return (NULL);
-		}
+			return (ft_free_split(split, i), NULL);
 		i++;
 	}
 	split[word_count] = NULL;
