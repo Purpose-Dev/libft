@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_constants.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:58:27 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 00:32:31 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/31 00:54:01 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/05/31 00:55:12 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_CONSTANTS_H
+# define FT_CONSTANTS_H
 
-
-
-
-
-#endif // LIBFT_H
+#endif // FT_CONSTANTS_H

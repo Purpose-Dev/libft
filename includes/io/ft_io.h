@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_io.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:58:27 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 00:32:31 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/31 00:56:45 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/05/31 01:05:46 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_IO_H
+# define FT_IO_H
 
+# include <unistd.h>
 
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
-
-
-#endif // LIBFT_H
+#endif // FT_IO_H
