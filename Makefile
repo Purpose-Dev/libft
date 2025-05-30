@@ -26,16 +26,16 @@ INCS_DIR		= includes
 OBJS_DIR        = objs
 DEBUG_DIR       = debug_objs
 
-SRCS            = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
-				  ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
-				  ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c  \
-				  ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c \
-				  ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
-				  ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-				  ft_lstmap.c ft_lstnew.c ft_lstsize.c
+SRCS            = $(shell find $(SRCS_DIR) -name "*.c" -type f | sed 's|$(SRCS_DIR)/||')
 
 OBJS            = $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
 DEBUG_OBJS      = $(addprefix $(DEBUG_DIR)/, ${SRCS:.c=.o})
+
+SUB_DIRS        = $(shell find $(INCS_DIR) -type d)
+INCLUDE_FLAGS   = $(addprefix -I, $(SUB_DIRS))
+
+OBJ_SUBDIRS     = $(sort $(dir $(OBJS)))
+DEBUG_SUBDIRS   = $(sort $(dir $(DEBUG_OBJS)))
 
 # OS detection for debugger configuration
 UNAME_S := $(shell uname -s)
@@ -57,7 +57,15 @@ TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE := 0
 
 # Main targets
-all:            $(OBJS_DIR) $(NAME)
+all:	create_dirs $(NAME)
+
+create_dirs:
+	@mkdir -p $(OBJ_SUBDIRS)
+	@echo "$(BLUE)Created object directories$(RESET)"
+
+create_debug_dirs:
+	@mkdir -p $(DEBUG_SUBDIRS)
+	@echo "$(BLUE)Created debug object directories$(RESET)"
 
 $(OBJS_DIR):
 	@mkdir -p $@
