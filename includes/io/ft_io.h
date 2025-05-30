@@ -13,7 +13,27 @@
 #ifndef FT_IO_H
 # define FT_IO_H
 
-# include <unistd.h>
+# ifdef _WIN32
+#  include <fcntl.h>
+#  include <io.h>
+#  ifndef STDIN_FILENO
+#   define STDIN_FILENO 0
+#  endif
+#  ifndef STDOUT_FILENO
+#   define STDOUT_FILENO 1
+#  endif
+#  ifndef STDERR_FILENO
+#   define STDERR_FILENO 2
+#  endif
+#  define write(fd, buf, count) _write(fd, buf, (unsigned int)(count))
+# else
+#  include <unistd.h>
+# endif
+
+# ifdef _WIN32
+
+typedef int	t_ssize;
+# endif
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

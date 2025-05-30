@@ -13,8 +13,11 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-
-
-
+# include "collections/ft_list.h"
+# include "core/ft_constants.h"
+# include "core/ft_ctype.h"
+# include "io/ft_io.h"
+# include "memory/ft_memory.h"
+# include "string/ft_string.h"
 
 #endif // LIBFT_H
