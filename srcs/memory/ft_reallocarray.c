@@ -12,7 +12,7 @@
 
 #include "memory/ft_memory.h"
 
-void	*ft_reallocarray(void *ptr, size_t nmemb, size_t size)
+void	*ft_reallocarray(void *ptr, const size_t nmemb, const size_t size)
 {
 	size_t	total_size;
 

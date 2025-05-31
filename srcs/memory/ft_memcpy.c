@@ -12,7 +12,7 @@
 
 #include "memory/ft_memory.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, const size_t n)
 {
 	const unsigned char	*s;
 	unsigned char		*d;

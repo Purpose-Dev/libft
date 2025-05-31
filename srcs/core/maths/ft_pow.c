@@ -12,7 +12,7 @@
 
 #include "core/ft_maths.h"
 
-double	ft_pow(double base, int exp)
+double	ft_pow(double base, const int exp)
 {
 	double	result;
 	int		abs_exp;

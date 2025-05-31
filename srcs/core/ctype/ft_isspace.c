@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isspace(int c)
+int	ft_isspace(const int c)
 {
 	return (c == ' ' || c == '\v' || c == 't'
 		|| c == '\r' || c == '\n' || c == '\f');

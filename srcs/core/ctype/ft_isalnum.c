@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isalnum(int c)
+int	ft_isalnum(const int c)
 {
 	return (ft_isdigit(c) || ft_isalpha(c));
 }

@@ -12,7 +12,7 @@
 
 #include "core/ft_maths.h"
 
-int	ft_min(int a, int b)
+int	ft_min(const int a, const int b)
 {
 	if (a < b)
 		return (a);

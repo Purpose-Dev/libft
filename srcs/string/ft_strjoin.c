@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:19 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/12 23:35:09 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:23:39 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "string/ft_string.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*joined;
 	size_t	len1;

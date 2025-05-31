@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isxdigit(int c)
+int	ft_isxdigit(const int c)
 {
 	return (ft_isdigit(c) || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'));
 }

@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isgraph(int c)
+int	ft_isgraph(const int c)
 {
 	return (c >= 33 && c <= 126);
 }

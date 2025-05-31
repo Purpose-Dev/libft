@@ -12,7 +12,7 @@
 
 #include "core/ft_maths.h"
 
-long	ft_labs(long n)
+long	ft_labs(const long n)
 {
 	if (n < 0)
 		return (-n);

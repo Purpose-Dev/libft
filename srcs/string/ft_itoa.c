@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:35 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/12 23:36:41 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:24:54 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_count_digits(int n)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(const int n)
 {
 	char	*str;
 	size_t	len;

@@ -12,7 +12,7 @@
 
 #include "memory/ft_memory.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *s, const int c, const size_t n)
 {
 	unsigned char	*ptr;
 	size_t			i;

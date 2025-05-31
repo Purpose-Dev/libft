@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_tolower(int c)
+int	ft_tolower(const int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + ('a' - 'A'));

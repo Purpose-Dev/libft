@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_ispunct(int c)
+int	ft_ispunct(const int c)
 {
 	return (ft_isgraph(c) && !ft_isalnum(c));
 }

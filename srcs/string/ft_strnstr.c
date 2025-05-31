@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:19:19 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 16:56:06 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:23:39 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "string/ft_string.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, const size_t len)
 {
 	size_t	i;
 	size_t	j;

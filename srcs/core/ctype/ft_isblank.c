@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isblank(int c)
+int	ft_isblank(const int c)
 {
 	return (c == ' ' || c == '\t');
 }

@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isupper(int c)
+int	ft_isupper(const int c)
 {
 	return (c >= 'A' && c <= 'Z');
 }

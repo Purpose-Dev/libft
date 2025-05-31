@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_isprint(int c)
+int	ft_isprint(const int c)
 {
 	return (c >= 32 && c <= 126);
 }

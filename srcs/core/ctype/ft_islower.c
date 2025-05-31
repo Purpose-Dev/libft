@@ -12,7 +12,7 @@
 
 #include "core/ft_ctype.h"
 
-int	ft_islower(int c)
+int	ft_islower(const int c)
 {
 	return (c >= 'a' && c <= 'z');
 }

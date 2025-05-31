@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:29 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/12 23:36:07 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:39:02 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "string/ft_string.h"
 
-static size_t	ft_count_words(char const *s, char c)
+static size_t	ft_count_words(char const *s, const char c)
 {
 	size_t	count;
 	size_t	i;
@@ -31,7 +31,7 @@ static size_t	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-static char	*ft_extract_word(char const *s, char c, size_t *pos)
+static char	*ft_extract_word(char const *s, const char c, size_t *pos)
 {
 	size_t	word_len;
 	size_t	i;
@@ -54,7 +54,7 @@ static char	*ft_extract_word(char const *s, char c, size_t *pos)
 	return (word);
 }
 
-static void	ft_free_split(char **split, size_t word_count)
+static void	ft_free_split(char **split, const size_t word_count)
 {
 	size_t	i;
 
@@ -67,7 +67,7 @@ static void	ft_free_split(char **split, size_t word_count)
 	free(split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, const char c)
 {
 	char	**split;
 	size_t	word_count;
