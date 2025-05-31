@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:10:18 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:56:27 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:05:20 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory/ft_memory.h"
+#include "core/memory/ft_memory.h"
 
 static size_t	ptr_size(const void *ptr)
 {

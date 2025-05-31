@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:52:10 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 18:37:25 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:02:45 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 int	ft_signf(const double n)
 {

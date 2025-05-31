@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 22:28:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/04/25 22:29:19 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:57:49 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_ctype.h"
+#include "core/ctype/ft_ctype.h"
 
 int	ft_isprint(const int c)
 {

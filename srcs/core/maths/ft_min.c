@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 04:12:17 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:16:33 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:01:42 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 int	ft_min(const int a, const int b)
 {

@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:35 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 17:24:54 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:05:57 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string/ft_string.h"
+#include "core/string/ft_string.h"
 
 static size_t	ft_count_digits(int n)
 {

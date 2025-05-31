@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 17:23:39 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:07:10 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string/ft_string.h"
+#include "core/string/ft_string.h"
 
 static int	ft_is_in_set(const char c, char const *set)
 {

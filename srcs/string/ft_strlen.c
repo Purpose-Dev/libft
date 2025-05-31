@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:55:50 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/04/29 17:01:57 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:06:46 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string/ft_string.h"
+#include "core/string/ft_string.h"
 
 size_t	ft_strlen(const char *s)
 {

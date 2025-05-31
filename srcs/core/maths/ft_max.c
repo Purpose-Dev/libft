@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 04:12:27 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:47:05 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:01:33 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 int	ft_max(const int a, const int b)
 {

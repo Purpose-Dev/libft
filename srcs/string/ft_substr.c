@@ -6,12 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:10 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 17:23:39 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:07:22 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory/ft_memory.h"
-#include "string/ft_string.h"
+#include "core/memory/ft_memory.h"
+#include "core/string/ft_string.h"
 
 char	*ft_substr(char const *s, const unsigned int start, const size_t len)
 {

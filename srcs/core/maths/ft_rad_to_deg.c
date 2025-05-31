@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 18:41:24 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 19:03:53 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:02:11 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 double	ft_rad_to_deg(double radians)
 {

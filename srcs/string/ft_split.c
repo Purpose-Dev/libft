@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:29 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 16:39:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:06:06 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "string/ft_string.h"
+#include "core/string/ft_string.h"
 
 static size_t	ft_count_words(char const *s, const char c)
 {

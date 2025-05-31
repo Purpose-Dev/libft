@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:51:50 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 18:15:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:03:23 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 void	ft_swapf(double *a, double *b)
 {

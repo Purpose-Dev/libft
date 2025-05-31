@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reallocarray.c                                  :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 16:03:12 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 16:07:31 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/12 22:39:25 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/05/31 23:04:20 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory/ft_memory.h"
+#include "core/memory/ft_memory.h"
 
-void	*ft_reallocarray(void *ptr, const size_t nmemb, const size_t size)
+void	*ft_calloc(const size_t nmemb, const size_t size)
 {
 	size_t	total_size;
+	void	*ptr;
 
 	if (nmemb == 0 || size == 0)
-		return (ft_realloc(ptr, 0));
-	if (nmemb > SIZE_MAX / size)
 	{
-		errno = ENOMEM;
-		return (NULL);
+		ptr = malloc(0);
+		if (!ptr)
+			errno = ENOMEM;
+		return (ptr);
 	}
+	if (nmemb > SIZE_MAX / size)
+		return (errno = ENOMEM, NULL);
 	total_size = nmemb * size;
 	if (total_size > PTRDIFF_MAX)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
-	return (ft_realloc(ptr, total_size));
+		return (errno = ENOMEM, NULL);
+	ptr = (void *)malloc(nmemb * size);
+	if (!ptr)
+		return (errno = ENOMEM, NULL);
+	ft_bzero(ptr, (nmemb * size));
+	return (ptr);
 }

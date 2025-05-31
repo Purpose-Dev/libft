@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 04:17:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:21:43 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:02:03 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 double	ft_pow(double base, const int exp)
 {

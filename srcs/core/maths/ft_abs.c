@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 04:09:39 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:16:51 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:59:00 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_maths.h"
+#include "core/maths/ft_maths.h"
 
 int	ft_abs(const int n)
 {

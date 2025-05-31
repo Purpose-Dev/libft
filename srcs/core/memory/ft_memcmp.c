@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 17:08:09 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/04/29 17:15:12 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/12 22:19:11 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/05/31 23:04:39 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "memory/ft_memory.h"
+#include "core/memory/ft_memory.h"
 
-void	*ft_memset(void *s, const int c, const size_t n)
+int	ft_memcmp(const void *s1, const void *s2, const size_t n)
 {
-	unsigned char	*ptr;
 	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	ptr = s;
 	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	while (i < n)
-		ptr[i++] = (unsigned char)c;
-	return (s);
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
 }

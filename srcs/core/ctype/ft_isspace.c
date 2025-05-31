@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:42:35 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 03:52:59 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:58:02 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/ft_ctype.h"
+#include "core/ctype/ft_ctype.h"
 
 int	ft_isspace(const int c)
 {
