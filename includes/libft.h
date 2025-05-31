@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 21:58:27 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 00:32:31 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:50:59 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define LIBFT_H
 
 # include "collections/ft_list.h"
-# include "core/ft_constants.h"
-# include "core/ft_ctype.h"
+# include "core/ctype/ft_ctype.h"
+# include "core/maths/ft_maths.h"
+# include "core/memory/ft_memory.h"
+# include "core/string/ft_string.h"
 # include "io/ft_io.h"
-# include "memory/ft_memory.h"
-# include "string/ft_string.h"
 
 #endif // LIBFT_H
