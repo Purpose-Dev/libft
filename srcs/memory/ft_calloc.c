@@ -14,13 +14,28 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
+	size_t	total_size;
 	void	*ptr;
 
-	if ((size != 0) && (nmemb > SIZE_MAX / size))
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb > SIZE_MAX / size)
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
+	total_size = nmemb * size;
+	if (total_size > PTRDIFF_MAX)
+	{
+		errno = ENOMEM;
+		return (NULL);
+	}
 	ptr = (void *)malloc(nmemb * size);
 	if (!ptr)
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
 	ft_bzero(ptr, (nmemb * size));
 	return (ptr);
 }
