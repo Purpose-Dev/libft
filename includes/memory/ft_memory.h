@@ -6,13 +6,14 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:54:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 01:06:14 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:01:56 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MEMORY_H
 # define FT_MEMORY_H
 
+# include <errno.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdint.h>
@@ -25,6 +26,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 void	*ft_calloc(size_t nmemb, size_t size);
-void    *ft_realloc(void *ptr, size_t size);
+void	*ft_realloc(void *ptr, size_t size);
+void	*ft_reallocarray(void *ptr, size_t nmemb, size_t size);
 
 #endif // FT_MEMORY_H
