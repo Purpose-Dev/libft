@@ -18,24 +18,20 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	if (nmemb == 0 || size == 0)
-		return (malloc(0));
-	if (nmemb > SIZE_MAX / size)
 	{
-		errno = ENOMEM;
-		return (NULL);
+		ptr = malloc(0);
+		if (!ptr)
+			errno = ENOMEM;
+		return (ptr);
 	}
+	if (nmemb > SIZE_MAX / size)
+		return (errno = ENOMEM, NULL);
 	total_size = nmemb * size;
 	if (total_size > PTRDIFF_MAX)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
+		return (errno = ENOMEM, NULL);
 	ptr = (void *)malloc(nmemb * size);
 	if (!ptr)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
+		return (errno = ENOMEM, NULL);
 	ft_bzero(ptr, (nmemb * size));
 	return (ptr);
 }
