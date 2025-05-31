@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/31 02:24:40 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/05/31 04:44:24 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -233,6 +233,15 @@ endif
 	@echo "OBJ_SUBDIRS: $(OBJ_SUBDIRS)"
 	@echo "TOTAL_FILES: $(TOTAL_FILES)"
 
+ifeq ($(DETECTED_OS),Windows)
+	norminette -RCheckDefine includes/**/*.h
+	norminette -RCheckForbiddenSourceHeaders $(FIND_SRCS_RAW)
+else
+norm:
+	norminette -RCheckDefine includes/**/*.h
+	norminette -RCheckForbiddenSourceHeaders $$(find srcs -type f -name "*.c")
+endif
+
 info:
 	@echo "┌───────────────────────────────────────────────────────┐"
 	@echo "│             Makefile for libft                     	│"
@@ -248,4 +257,4 @@ info:
 	@echo "└───────────────────────────────────────────────────────┘"
 	@echo "Detected OS: $(DETECTED_OS)"
 
-.PHONY: all debug debug_lib sanitize clean fclean re info create_dirs create_debug_dirs debug-vars
+.PHONY: all debug debug_lib sanitize clean fclean re info create_dirs create_debug_dirs debug-vars norm
