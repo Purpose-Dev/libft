@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:45:54 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 00:45:40 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:33:52 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "io/ft_io.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(const char c, const int fd)
 {
 	write(fd, &c, 1);
 }
