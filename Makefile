@@ -55,7 +55,7 @@ endif
 # Project configuration
 NAME            = libft.a
 AR              = ar rcs
-CFLAGS          = -Wall -Wextra -Werror -std=c99 -pedantic -Wshadow -Wconversion \
+CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
                   -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
                   -Wold-style-definition
 DEBUG_FLAGS     = -g3 -O0 -DDEBUG
