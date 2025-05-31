@@ -6,15 +6,19 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:01:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 04:30:44 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:00:24 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATHS_H
 # define FT_MATHS_H
 
+# include "math.h"
+
 # define MIN(a, b) ft_min(a, b)
 # define MAX(a, b) ft_max(a, b)
+
+# define PI 3.141592653589793
 
 int		ft_mod(int a, int b);
 int		ft_abs(int n);
