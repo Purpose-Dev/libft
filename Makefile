@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/31 17:33:52 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/05/31 23:17:42 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,9 @@ ifeq ($(DETECTED_OS),Windows)
     MKDIR = if not exist
     MKDIR_CMD = mkdir
     SHELL = cmd
-    # Recherche récursive des fichiers .c sur Windows
     FIND_SRCS_RAW = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c)
     FIND_SRCS = $(patsubst $(SRCS_DIR)/%,%,$(FIND_SRCS_RAW))
+    FIND_INCS_RAW = $(wildcard $(INCS_DIR)/*.h) $(wildcard $(INCS_DIR)/*/*.h) $(wildcard $(INCS_DIR)/*/*/*.h)
     PATH_SEP = \\
 else
     CC = cc
@@ -57,7 +57,7 @@ NAME            = libft.a
 AR              = ar rcs
 CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
                   -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
-                  -Wold-style-definition
+                  -Wold-style-definition $(INCLUDE_FLAGS)
 DEBUG_FLAGS     = -g3 -O0 -DDEBUG
 
 # Source files and directories
@@ -144,30 +144,29 @@ $(NAME): ${OBJS}
 	@$(AR) ${NAME} ${OBJS}
 	@echo "Library $(NAME) successfully created"
 
-# Règles de compilation séparées selon l'OS
 ifeq ($(DETECTED_OS),Windows)
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@if not exist "$(dir $@)" mkdir "$(dir $@)" 2>nul || echo >nul
 	@echo Compiling $<
-	@$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(DEBUG_DIR)/%.o: $(SRCS_DIR)/%.c
 	@if not exist "$(dir $@)" mkdir "$(dir $@)" 2>nul || echo >nul
 	@echo Debug-compiling $<
-	@$(CC) $(CFLAGS) -I$(INCS_DIR) $(DEBUG_FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 else
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
 	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
 	@printf "[%3d%%] Compiling %-30s\r" $(PROGRESS) "$<"
-	@$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Compile complete!\n"; fi
 
 $(DEBUG_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
 	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
 	@printf "[%3d%%] Debug-compiling %-30s\r" $(PROGRESS) "$<"
-	@$(CC) $(CFLAGS) -I$(INCS_DIR) $(DEBUG_FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Debug compile complete!\n"; fi
 endif
 
@@ -227,19 +226,20 @@ debug-vars:
 	@echo "SRCS_DIR: $(SRCS_DIR)"
 ifeq ($(DETECTED_OS),Windows)
 	@echo "FIND_SRCS_RAW: $(FIND_SRCS_RAW)"
+	@echo "FIND_INCS_RAW: $(FIND_INCS_RAW)"
 endif
 	@echo "SRCS: $(SRCS)"
 	@echo "OBJS: $(OBJS)"
 	@echo "OBJ_SUBDIRS: $(OBJ_SUBDIRS)"
 	@echo "TOTAL_FILES: $(TOTAL_FILES)"
 
+norm:
 ifeq ($(DETECTED_OS),Windows)
-	norminette -RCheckDefine includes/**/*.h
+	norminette -RCheckDefine $(FIND_INCS_RAW)
 	norminette -RCheckForbiddenSourceHeaders $(FIND_SRCS_RAW)
 else
-norm:
-	norminette -RCheckDefine includes/**/*.h
-	norminette -RCheckForbiddenSourceHeaders $$(find srcs -type f -name "*.c")
+	norminette -RCheckDefine $$(find $(INCS_DIR) -type f -name "*.h")
+	norminette -RCheckForbiddenSourceHeaders $$(find $(SRCS_DIR) -type f -name "*.c")
 endif
 
 info:
