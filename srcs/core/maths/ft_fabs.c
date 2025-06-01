@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_fabs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/31 17:38:05 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/01 04:12:32 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/06/01 03:50:59 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/06/01 04:06:46 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/maths/ft_maths.h"
+#include "core/memory/ft_memory.h"
 
-double	ft_sqrt(const double x)
+double	ft_fabs(const double x)
 {
-	double	guess;
-	double	prev_guess;
-	double	epsilon;
-	int		iterations;
+	uint64_t	temp_bits;
+	double		result;
 
-	if (x < 0.0)
-		return (-1.0);
-	if (x == 0.0 || x == 1.0)
-		return (x);
-	if (x < 1.0)
-		guess = x;
-	else
-		guess = x / 2.0;
-	epsilon = 1e-15;
-	iterations = 0;
-	while (iterations < 50)
-	{
-		prev_guess = guess;
-		guess = (guess + x / guess) * 0.5;
-		if (ft_fabs(guess - prev_guess) < epsilon)
-			break ;
-		iterations++;
-	}
-	return (guess);
+	ft_memcpy(&temp_bits, &x, sizeof(double));
+	temp_bits &= ~(1ULL << 63);
+	ft_memcpy(&result, &temp_bits, sizeof(double));
+	return (result);
 }
