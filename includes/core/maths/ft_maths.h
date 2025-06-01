@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:01:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 19:00:24 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/01 03:52:52 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 int		ft_mod(int a, int b);
 int		ft_abs(int n);
+double	ft_fabs(double x);
 long	ft_labs(long n);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
@@ -63,8 +64,6 @@ int		ft_is_zero(double x);
 int		ft_is_nan(double x);
 int		ft_is_inf(double x);
 
-int		ft_rand_range(int min, int max);
-double	ft_rand_double(void);
 long	ft_fibonacci(int n);
 int		ft_is_prime(int n);
 int		ft_next_prime(int n);
