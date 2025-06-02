@@ -4,36 +4,6 @@
 
 ---
 
-### **ft_fibonacci(int n)**
-
-```
-INPUT: int n
-OUTPUT: long
-BEHAVIOR:
-  • n < 0 → Returns -1 (error)
-  • n == 0 → Returns 0
-  • n == 1 → Returns 1
-  • n >= 2 → F(n) = F(n-1) + F(n-2)
-OVERFLOW:
-  • n > 78 → long overflow (unprotected)
-ERRORS: n < 0, overflow
-ERRNO: Unmodified
-```
-
-### **ft_next_prime(int n)**
-
-```
-INPUT: int n
-OUTPUT: int
-BEHAVIOR:
-  • n < 2 → Returns 2 (first prime)
-  • n >= 2 → Returns the smallest prime > n
-LIMIT:
-  • If no prime found before INT_MAX → Returns -1
-ERRORS: No prime found
-ERRNO: Unmodified
-```
-
 ### **ft_sin(double x) / ft_cos(double x)**
 
 ```

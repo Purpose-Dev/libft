@@ -6,14 +6,15 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:01:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 07:11:07 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/02 11:53:22 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATHS_H
 # define FT_MATHS_H
 
-# include "math.h"
+# include <limits.h>
+# include <math.h>
 
 typedef union u_double_caster
 {
