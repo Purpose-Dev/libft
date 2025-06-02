@@ -4,18 +4,6 @@
 
 ---
 
-### **ft_is_nan(double x) / ft_is_inf(double x)**
-
-```
-INPUT: double x
-OUTPUT: int (0 or 1)
-BEHAVIOR (C99 COMPLIANT):
-  • is_nan: Returns 1 if x is NaN, 0 otherwise
-  • is_inf: Returns 1 if x is ±inf, 0 otherwise
-ERRORS: None
-ERRNO: Unmodified
-```
-
 ### **ft_fibonacci(int n)**
 
 ```
