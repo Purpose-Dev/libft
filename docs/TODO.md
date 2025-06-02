@@ -47,3 +47,11 @@ OVERFLOW:
 ERRORS: Overflow
 ERRNO: ERANGE if overflow
 ```
+
+## Memory functions
+
+--- 
+
+## String functions
+
+--- 
