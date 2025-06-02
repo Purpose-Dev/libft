@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:01:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/01 03:52:52 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/02 07:11:07 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 
 # include "math.h"
 
+typedef union u_double_caster
+{
+	double				d;
+	unsigned long long	ull;
+}	t_double_caster;
+
 # define MIN(a, b) ft_min(a, b)
 # define MAX(a, b) ft_max(a, b)
 
 # define PI 3.141592653589793
+# define EXPONENT_MASK 0x7FF0000000000000ULL // IEEE 754 double-precision
+# define MANTISSA_MASK 0x000FFFFFFFFFFFFFULL // IEEE 754 double-precision
 
 int		ft_mod(int a, int b);
 int		ft_abs(int n);
