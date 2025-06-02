@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 11:10:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 05:47:26 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/02 06:42:16 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_srand(const unsigned int seed)
 int	ft_rand(void)
 {
 	g_ft_rand_next = g_ft_rand_next * FT_RAND_A + FT_RAND_C;
-	return ((int)(g_ft_rand_next % (FT_RAND_MAX + 1)));
+	return ((int)(g_ft_rand_next % (FT_RAND_MAX + 1lu)));
 }
 
 double	ft_randf(void)
