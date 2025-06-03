@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:57:26 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 11:54:26 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/03 09:10:16 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/maths/ft_maths.h"
 
-int ft_next_prime(const int n)
+int	ft_next_prime(const int n)
 {
 	int	current_num;
 
