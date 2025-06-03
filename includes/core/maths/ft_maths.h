@@ -6,13 +6,15 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:01:44 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 11:53:22 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/03 08:43:54 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATHS_H
 # define FT_MATHS_H
 
+# include <errno.h>
+# include <float.h>
 # include <limits.h>
 # include <math.h>
 
@@ -30,6 +32,7 @@ typedef union u_double_caster
 # define MANTISSA_MASK 0x000FFFFFFFFFFFFFULL // IEEE 754 double-precision
 
 int		ft_mod(int a, int b);
+double	ft_fmod(double x, double y);
 int		ft_abs(int n);
 double	ft_fabs(double x);
 long	ft_labs(long n);
