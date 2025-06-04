@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:39:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:04:20 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/04 03:51:29 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void	*ft_calloc(const size_t nmemb, const size_t size)
 
 	if (nmemb == 0 || size == 0)
 	{
-		ptr = malloc(0);
-		if (!ptr)
-			errno = ENOMEM;
+		ptr = NULL;
+		errno = ENOMEM;
 		return (ptr);
 	}
 	if (nmemb > SIZE_MAX / size)
