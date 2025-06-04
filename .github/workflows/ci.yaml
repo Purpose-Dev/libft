@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Clang and scan-build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang clang-tools
+
+      - name: Run scan-build
+        run: |
+          scan-build -o scan_build_report make clean all
+
+      - name: Upload scan-build report
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-build-report
+          path: scan_build_report
+
+  norm-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install norminette
+        run: |
+          python3 -m pip install --upgrade pip setuptools
+          python3 -m pip install norminette
+
+      - name: Run norminette and save output
+        run: |
+          make norm | tee norm_output.txt
+
+      - name: Upload norminette report
+        uses: actions/upload-artifact@v4
+        with:
+          name: norminette-report
+          path: norm_output.txt
