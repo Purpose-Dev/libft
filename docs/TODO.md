@@ -1,25 +1,5 @@
 # Todo
 
-## Mathematics functions
-
----
-
-### **ft_sinh(double x) / ft_cosh(double x)**
-
-```
-INPUT: double x
-OUTPUT: double
-BEHAVIOR (C99 COMPLIANT):
-  • sinh(x) = (e^x - e^-x) / 2
-  • cosh(x) = (e^x + e^-x) / 2
-  • x == ±inf → sinh returns ±inf, cosh returns +inf
-  • x == nan → Returns nan
-OVERFLOW:
-  • |x| > ~700 → Overflow, errno = ERANGE
-ERRORS: Overflow
-ERRNO: ERANGE if overflow
-```
-
 ## Memory functions
 
 ---
