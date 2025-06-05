@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/05/31 23:17:42 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/06/05 02:53:20 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ ifeq ($(DETECTED_OS),Windows)
     FIND_SRCS_RAW = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c)
     FIND_SRCS = $(patsubst $(SRCS_DIR)/%,%,$(FIND_SRCS_RAW))
     FIND_INCS_RAW = $(wildcard $(INCS_DIR)/*.h) $(wildcard $(INCS_DIR)/*/*.h) $(wildcard $(INCS_DIR)/*/*/*.h)
+    FIND_TESTS_RAW = $(wildcard $(TESTS_DIR)/*.c) $(wildcard $(TESTS_DIR)/*/*.c) $(wildcard $(TESTS_DIR)/*/*/*.c)
+    FIND_TESTS = $(patsubst $(TESTS_DIR)/%,%,$(FIND_TESTS_RAW))
     PATH_SEP = \\
 else
     CC = cc
@@ -49,11 +51,13 @@ else
     MKDIR = mkdir -p
     MKDIR_CMD =
     FIND_SRCS = $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(SRCS_DIR)/||')
+    FIND_TESTS = $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(TESTS_DIR)/||')
     PATH_SEP = /
 endif
 
 # Project configuration
 NAME            = libft.a
+TESTS_BIN		= run_tests
 AR              = ar rcs
 CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
                   -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
@@ -65,8 +69,10 @@ SRCS_DIR		= srcs
 INCS_DIR		= includes
 OBJS_DIR        = objs
 DEBUG_DIR       = debug_objs
+TESTS_DIR		= tests
 
 SRCS            = $(FIND_SRCS)
+TESTS_SRCS		= $(FIND_TESTS)
 
 OBJS            = $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
 DEBUG_OBJS      = $(addprefix $(DEBUG_DIR)/, ${SRCS:.c=.o})
@@ -242,6 +248,14 @@ else
 	norminette -RCheckForbiddenSourceHeaders $$(find $(SRCS_DIR) -type f -name "*.c")
 endif
 
+tests: $(NAME)
+ifeq ($(DETECTED_OS),Windows)
+	@echo "Unit tests not supported on Windows in this Makefile"
+else
+	$(CC) $(CFLAGS) -I$(INCS_DIR) -o $(TESTS_BIN) $(TESTS_SRCS) $(NAME) -lcriterion
+	./$(TESTS_BIN)
+endif
+
 info:
 	@echo "┌───────────────────────────────────────────────────────┐"
 	@echo "│             Makefile for libft                     	│"
@@ -257,4 +271,4 @@ info:
 	@echo "└───────────────────────────────────────────────────────┘"
 	@echo "Detected OS: $(DETECTED_OS)"
 
-.PHONY: all debug debug_lib sanitize clean fclean re info create_dirs create_debug_dirs debug-vars norm
+.PHONY: all debug debug_lib sanitize clean fclean re info create_dirs create_debug_dirs debug-vars norm tests
