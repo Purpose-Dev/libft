@@ -12,23 +12,23 @@
 
 #include "core/string/ft_string.h"
 
-char	*ft_strnstr(const char *big, const char *little, const size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, const size_t len)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	if ((!big && len == 0) || !little)
+	if ((!haystack && len == 0) || !needle)
 		return (0);
-	if (little[0] == '\0')
-		return ((char *) big);
-	while (big && big[i] != '\0' && i < len)
+	if (needle[0] == '\0')
+		return ((char *) haystack);
+	while (haystack && haystack[i] != '\0' && i < len)
 	{
 		j = 0;
-		while (big[i + j] == little[j] && (i + j) < len)
+		while (haystack[i + j] == needle[j] && (i + j) < len)
 		{
-			if (little[j + 1] == '\0')
-				return ((char *) &big[i]);
+			if (needle[j + 1] == '\0')
+				return ((char *) &haystack[i]);
 			j++;
 		}
 		i++;
