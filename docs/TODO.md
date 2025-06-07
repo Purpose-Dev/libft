@@ -1,70 +1,10 @@
 # Todo
 
-## Memory functions
-
----
-
-### **ft_memdup(const void *src, size_t n)**
-
-```
-INPUT: const void *src, size_t n
-OUTPUT: void *
-BEHAVIOR (C99 COMPLIANT):
-  • Duplicates n bytes of memory
-  • Allocates n bytes with malloc()
-  • Copies content from src
-  • src == NULL → returns NULL
-  • n == 0 → returns valid pointer to 0 bytes
-ERRORS: Memory allocation failure
-ERRNO: None (malloc sets errno)
-```
-
-### **ft_memrchr(const void *s, int c, size_t n)**
-
-```
-INPUT: const void *s, int c, size_t n
-OUTPUT: void *
-BEHAVIOR (C99 COMPLIANT):
-  • Searches for last occurrence of byte c in memory area s
-  • Searches backwards from s+n-1 to s
-  • Returns pointer to last occurrence or NULL if not found
-ERRORS: None
-ERRNO: None
-```
-
-### **ft_memccpy(void *dest, const void *src, int c, size_t n)**
-
-```
-INPUT: void *dest, const void *src, int c, size_t n
-OUTPUT: void *
-BEHAVIOR (C99 COMPLIANT):
-  • Copies bytes from src to dest until c is found or n bytes copied
-  • Stops at first occurrence of c
-  • Returns pointer to byte after c in dest, or NULL if c not found
-  • If c found, copies c as well
-ERRORS: None
-ERRNO: None
-```
-
-### **ft_memcasecmp(const void *s1, const void *s2, size_t n)**
-
-```
-INPUT: const void *s1, const void *s2, size_t n
-OUTPUT: int
-BEHAVIOR (C99 COMPLIANT):
-  • Case-insensitive memory comparison
-  • Compares n bytes treating ASCII letters case-insensitively
-  • Returns <0, 0, >0 based on comparison result
-  • Converts ASCII A-Z to a-z before comparison
-ERRORS: None
-ERRNO: None
-```
-
 ## String functions
 
 ---
 
-### **ft_strcpy(char *dest, const char *src)**
+### ft_strcpy(char *dest, const char *src)
 
 ```
 INPUT: char *dest, const char *src
@@ -78,7 +18,7 @@ ERRORS: Buffer overflow (undefined behavior)
 ERRNO: None
 ```
 
-### **ft_strcat(char *dest, const char *src)**
+### ft_strcat(char *dest, const char *src)
 
 ```
 INPUT: char *dest, const char *src
@@ -92,7 +32,7 @@ ERRORS: Buffer overflow (undefined behavior)
 ERRNO: None
 ```
 
-### **ft_strcmp(const char *s1, const char *s2)**
+### ft_strcmp(const char *s1, const char *s2)
 
 ```
 INPUT: const char *s1, const char *s2
@@ -106,7 +46,7 @@ ERRORS: None
 ERRNO: None
 ```
 
-### **ft_strstr(const char *haystack, const char *needle)**
+### ft_strstr(const char *haystack, const char *needle)
 
 ```
 INPUT: const char *haystack, const char *needle
@@ -120,7 +60,7 @@ ERRORS: None
 ERRNO: None
 ```
 
-### **ft_strcspn(const char *s, const char *reject)**
+### ft_strcspn(const char *s, const char *reject)
 
 ```
 INPUT: const char *s, const char *reject
@@ -134,7 +74,7 @@ ERRORS: None
 ERRNO: None
 ```
 
-### **ft_strspn(const char *s, const char *accept)**
+### ft_strspn(const char *s, const char *accept)
 
 ```
 INPUT: const char *s, const char *accept
@@ -148,7 +88,7 @@ ERRORS: None
 ERRNO: None
 ```
 
-### **ft_strtok(char *str, const char *delim)**
+### ft_strtok(char *str, const char *delim)
 
 ```
 INPUT: char *str, const char *delim
@@ -167,7 +107,7 @@ ERRNO: None
 
 ---
 
-### **ft_atol(const char *str)**
+### ft_atol(const char *str)
 
 ```
 INPUT: const char *str
@@ -183,7 +123,7 @@ ERRORS: None
 ERRNO: None
 ```
 
-### **ft_atof(const char *str)**
+### ft_atof(const char *str)
 
 ```
 INPUT: const char *str
@@ -199,7 +139,7 @@ ERRORS: Overflow, underflow
 ERRNO: ERANGE on overflow/underflow
 ```
 
-### **ft_ltoa(long n)**
+### ft_ltoa(long n)
 
 ```
 INPUT: long n
@@ -213,7 +153,7 @@ ERRORS: Memory allocation failure
 ERRNO: None (malloc sets errno)
 ```
 
-### **ft_utoa(unsigned int n)**
+### ft_utoa(unsigned int n)
 
 ```
 INPUT: unsigned int n
@@ -227,7 +167,7 @@ ERRORS: Memory allocation failure
 ERRNO: None (malloc sets errno)
 ```
 
-### **ft_ftoa(double f, int precision)**
+### ft_ftoa(double f, int precision)
 
 ```
 INPUT: double f, int precision
