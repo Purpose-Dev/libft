@@ -15,9 +15,9 @@
 
 # include <stddef.h>
 # include <stdint.h>
-# include "ft_map.h"
+#include "ft_map_utils.h"
 
-# ifndef HASHMAP_DEFAULT_CAPACITY
+#ifndef HASHMAP_DEFAULT_CAPACITY
 #  define HASHMAP_DEFAULT_CAPACITY 16
 # endif // HASHMAP_DEFAULT_CAPACITY
 
