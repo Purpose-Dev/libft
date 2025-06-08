@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:27:56 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/07 02:38:48 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/08 09:08:20 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_TREEMAP_H
 
 # include <stddef.h>
-#include "../ft_map_utils.h"
+# include "../ft_map_utils.h"
 
 typedef enum e_rb_color
 {

@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:07:57 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/07 02:37:57 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/08 09:09:03 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include <stddef.h>
 # include <stdint.h>
-#include "../ft_map_utils.h"
+# include <stdlib.h>
+# include "../ft_map_utils.h"
 
-#ifndef HASHMAP_DEFAULT_CAPACITY
+# ifndef HASHMAP_DEFAULT_CAPACITY
 #  define HASHMAP_DEFAULT_CAPACITY 16
 # endif // HASHMAP_DEFAULT_CAPACITY
 
