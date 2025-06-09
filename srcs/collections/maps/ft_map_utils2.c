@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:57:09 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/07 03:03:14 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/09 05:48:30 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	count_digits(const char **str)
 		(*str)++;
 }
 
-static int	compare_same_length_numbers(const char *a, const char *b, size_t len)
+static int	comp_same_lgt_nbrs(const char *a, const char *b, const size_t len)
 {
 	size_t	i;
 
@@ -56,7 +56,7 @@ static int	compare_numbers(const char **a, const char **b)
 			return (1);
 		return (-1);
 	}
-	return (compare_same_length_numbers(start_a, start_b, len_a));
+	return (comp_same_lgt_nbrs(start_a, start_b, len_a));
 }
 
 static int	compare_numeric_part(const char **a, const char **b)
