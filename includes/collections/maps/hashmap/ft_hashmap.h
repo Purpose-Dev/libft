@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:07:57 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/08 09:09:03 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/09 22:07:21 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_hashmap_entry
 	char					*key;
 	struct s_hashmap_entry	*next;
 	uint32_t				hash;
+	uint32_t				reserved;
 }	t_hashmap_entry;
 
 typedef struct s_hashmap
@@ -47,10 +48,11 @@ typedef struct s_hashmap
 	t_hashmap_entry	**buckets;
 	uint32_t		(*hash_func)(const char *key);
 	int				(*key_cmp)(const char *a, const char *b);
+	float			load_factor;
+	uint32_t		reserved;
 	size_t			capacity;
 	size_t			size;
 	size_t			threshold;
-	float			load_factor;
 }	t_hashmap;
 
 typedef struct s_hashmap_iterator
@@ -88,7 +90,7 @@ char				**hashmap_keys(t_hashmap *map);
 void				**hashmap_values(t_hashmap *map);
 
 t_hashmap_iterator	*hashmap_iterator_create(t_hashmap *map);
-int					hashmap_iterator_has_next(t_hashmap_iterator *it);
+int					hashmap_iterator_has_next(const t_hashmap_iterator *it);
 t_hashmap_entry		*hashmap_iterator_next(t_hashmap_iterator *it);
 void				hashmap_iterator_destroy(t_hashmap_iterator *it);
 void				hashmap_foreach(t_hashmap *map,

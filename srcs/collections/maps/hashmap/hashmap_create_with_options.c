@@ -42,7 +42,7 @@ t_hashmap	*hashmap_create_with_options(size_t capacity, float load_factor)
 	map->capacity = capacity;
 	map->size = 0;
 	map->load_factor = load_factor;
-	map->threshold = (size_t)(capacity * load_factor);
+	map->threshold = (capacity * (size_t)load_factor);
 	map->hash_func = hashmap_djb2_hash;
 	map->key_cmp = str_compare;
 	init_buckets(map);

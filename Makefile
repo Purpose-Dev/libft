@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/06/07 01:59:46 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/06/09 22:04:31 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ ifeq ($(DETECTED_OS),Windows)
     MKDIR = if not exist
     MKDIR_CMD = mkdir
     SHELL = cmd
-    FIND_SRCS_RAW = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c)
+    FIND_SRCS_RAW = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*/*.c)
     FIND_SRCS = $(patsubst $(SRCS_DIR)/%,%,$(FIND_SRCS_RAW))
     FIND_INCS_RAW = $(wildcard $(INCS_DIR)/*.h) $(wildcard $(INCS_DIR)/*/*.h) $(wildcard $(INCS_DIR)/*/*/*.h)
     FIND_TESTS_RAW = $(wildcard $(TESTS_DIR)/*.c) $(wildcard $(TESTS_DIR)/*/*.c) $(wildcard $(TESTS_DIR)/*/*/*.c)

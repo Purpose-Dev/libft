@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 07:44:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/09 08:10:31 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/06/09 22:02:38 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static uint32_t	murmur3_scramble(uint32_t k)
 static uint32_t	murmur3_eoh(uint32_t hash, const uint32_t k, const size_t len)
 {
 	hash ^= murmur3_scramble(k);
-	hash ^= len;
+	hash ^= (uint32_t)len;
 	hash ^= hash >> 16;
 	hash *= 0x85EBCA6B;
 	hash ^= hash >> 13;
