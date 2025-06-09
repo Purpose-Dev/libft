@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_contains_value.c                           :+:      :+:    :+:   */
+/*   hashmap_put_if_absent.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 05:52:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/09 06:27:15 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/06/09 06:18:52 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/06/09 06:20:48 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collections/maps/hashmap/ft_hashmap.h"
 
-int	hashmap_contains_value(t_hashmap *map, void *value,
-							int (*cmp)(void *, void *))
+int	hashmap_put_if_absent(t_hashmap *map, const char *key, void *value)
 {
-	size_t			i;
-	t_hashmap_entry	*entry;
-
-	if (!map || !cmp)
+	if (!map || !key)
 		return (0);
-	i = 0;
-	while (i < map->capacity)
-	{
-		entry = map->buckets[i];
-		while (entry)
-		{
-			if (cmp(entry->value, value) == 0)
-				return (1);
-			entry = entry->next;
-		}
-		i++;
-	}
-	return (0);
+	if (hashmap_contains_key(map, key))
+		return (0);
+	return (hashmap_put(map, key, value));
 }

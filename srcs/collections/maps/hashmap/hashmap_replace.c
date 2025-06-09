@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_contains_value.c                           :+:      :+:    :+:   */
+/*   hashmap_replace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 05:52:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/09 06:27:15 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/06/09 06:20:33 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/06/09 06:27:43 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collections/maps/hashmap/ft_hashmap.h"
 
-int	hashmap_contains_value(t_hashmap *map, void *value,
-							int (*cmp)(void *, void *))
+void	*hashmap_replace(t_hashmap *map, const char *key, void *new_value)
 {
-	size_t			i;
+	uint32_t		hash;
+	size_t			index;
 	t_hashmap_entry	*entry;
+	void			*old_value;
 
-	if (!map || !cmp)
-		return (0);
-	i = 0;
-	while (i < map->capacity)
+	if (!map || !key)
+		return (NULL);
+	hash = map->hash_func(key);
+	index = hash % map->capacity;
+	entry = map->buckets[index];
+	while (entry)
 	{
-		entry = map->buckets[i];
-		while (entry)
+		if (entry->hash == hash && map->key_cmp(entry->key, key) == 0)
 		{
-			if (cmp(entry->value, value) == 0)
-				return (1);
-			entry = entry->next;
+			old_value = entry->value;
+			entry->value = new_value;
+			return (old_value);
 		}
-		i++;
+		entry = entry->next;
 	}
-	return (0);
+	return (NULL);
 }
