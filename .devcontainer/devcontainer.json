@@ -1,0 +1,12 @@
+{
+	name: "C Dev Container",
+	build: {
+		dockerfile: "Dockerfile"
+	},
+	"customizations": {
+		"jetbrains": {
+			"backend": "CLion"
+		}
+	},
+	"remoteUser": "dev"
+}
