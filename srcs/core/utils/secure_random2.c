@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   secure_random.h                                    :+:      :+:    :+:   */
+/*   secure_random2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 01:48:24 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/11 03:08:36 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/06/11 03:15:48 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/06/11 03:16:26 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SECURE_RANDOM_H
-# define SECURE_RANDOM_H
+#include "core/utils/secure_random.h"
 
-# include <stddef.h>
-# include <stdint.h>
-
-# define FT_RANDOM_SUCCESS 0
-# define FT_RANDOM_FAIL    -1
-
-void		ft_srand_secure(uint64_t seed);
-uint32_t	ft_rand_secure_u32(void);
-uint64_t	ft_rand_secure_u64(void);
-int			ft_rand_secure_range(int min, int max);
-float		ft_rand_secure_float(void);
-
-#endif // SECURE_RANDOM_H
+float	ft_rand_secure_float(void)
+{
+	return ((float)(ft_rand_secure_u64() & 0xFFFFFFFFULL) / 4294967295.0f);
+}
