@@ -6,18 +6,21 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:55:28 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/07 01:36:39 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/03 19:30:14 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRING_H
 # define FT_STRING_H
 
+# include <errno.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <sys/types.h>
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strnlen(const char *s, size_t max_length);
+ssize_t	ft_strlen_s(const char *s);
 char	*ft_strcpy(char *dest, const char *src);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strcat(char *dest, const char *src);

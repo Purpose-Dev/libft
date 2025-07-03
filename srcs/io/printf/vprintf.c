@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_iterator_destroy.c                         :+:      :+:    :+:   */
+/*   vprintf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 21:43:02 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/09 21:57:32 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/02/23 16:41:25 by smamalig          #+#    #+#             */
+/*   Updated: 2025/07/03 20:10:08 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "collections/maps/hashmap/ft_hashmap.h"
+#include "io/ft_printf.h"
 
-void	hashmap_iterator_destroy(t_hashmap_iterator *it)
+int	ft_vprintf(const char *fmt, va_list ap)
 {
-	if (!it)
-		return ;
-	free(it);
+	return (ft_vdprintf(1, fmt, ap));
 }

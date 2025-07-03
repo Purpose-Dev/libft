@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_errno.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 21:58:27 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 20:28:36 by smamalig         ###   ########.fr       */
+/*   Created: 2025/07/03 19:42:17 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/07/03 19:44:33 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_ERRNO
+# define FT_ERRNO
 
-# include "collections/ft_list.h"
-# include "core/ctype/ft_ctype.h"
-# include "core/maths/ft_maths.h"
-# include "core/memory/ft_memory.h"
-# include "core/string/ft_string.h"
-# include "io/ft_io.h"
-# include "io/ft_printf.h"
+# define ESNULLP 400  // null ptr
+# define ESZEROL 401  // length is zero
+# define ESLEMAX 403  // length exceeds RSIZE_MAX
 
-#endif // LIBFT_H
+#endif // FT_ERRNO
