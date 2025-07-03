@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/06/09 22:04:31 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/07/03 20:06:06 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -180,6 +180,7 @@ debug: CURRENT_FILE := 0
 debug: create_debug_dirs debug_lib
 	@echo "Debug build complete for $(DEBUGGER)"
 	@echo "Run your program with: $(DEBUGGER_EXEC) ./your_program"
+	@$(MAKE) clean
 
 debug_lib: $(DEBUG_OBJS)
 	@echo "Compiling debug library..."
