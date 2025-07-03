@@ -15,5 +15,6 @@
 void	hashmap_iterator_destroy(t_hashmap_iterator *it)
 {
 	if (!it)
-		free(it);
+		return ;
+	free(it);
 }
