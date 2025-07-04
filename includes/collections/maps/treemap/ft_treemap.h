@@ -30,6 +30,7 @@ typedef struct s_treemap_node
 	struct s_treemap_node	*right;
 	struct s_treemap_node	*parent;
 	t_rb_color				color;
+	int						padding;
 }	t_treemap_node;
 
 typedef struct s_treemap
@@ -45,9 +46,10 @@ typedef struct s_treemap_iterator
 	t_treemap		*map;
 	t_treemap_node	*current;
 	t_treemap_node	**stack;
+	int				reverse;
+	int				padding;
 	size_t			stack_size;
 	size_t			stack_capacity;
-	int				reverse;
 }	t_treemap_iterator;
 
 t_treemap			*treemap_create(void);
@@ -80,7 +82,7 @@ t_treemap			*treemap_submap(t_treemap *map, const char *from_key,
 t_treemap			*treemap_head_map(t_treemap *map, const char *to_key);
 t_treemap			*treemap_tail_map(t_treemap *map, const char *from_key);
 
-size_t				treemap_size(t_treemap *map);
+size_t				treemap_size(const t_treemap *map);
 int					treemap_is_empty(t_treemap *map);
 char				**treemap_keys(t_treemap *map);
 void				**treemap_values(t_treemap *map);
