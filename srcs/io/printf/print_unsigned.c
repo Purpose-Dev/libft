@@ -18,7 +18,7 @@ static void	__ft_printf_uint_internal(t_printf_parser *parser,
 	if (!iters)
 		return ;
 	__ft_printf_uint_internal(parser, n / 10, iters - 1);
-	__ft_printf_insert(parser, n % 10 + '0');
+	__ft_printf_insert(parser, (char)(n % 10 + '0'));
 }
 
 static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
