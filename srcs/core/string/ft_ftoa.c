@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:51:57 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 19:57:00 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/04 01:53:24 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_ftoa(const double f, const int precision)
 	if (!str)
 		return (NULL);
 	auto int pos = 0;
-	const auto long int_part = (long)f;
+	auto const long int_part = (long)f;
 	auto double frac_part = f - (double)int_part;
 	if (!add_integer_part(str, int_part, &pos))
 		return (free(str), NULL);
