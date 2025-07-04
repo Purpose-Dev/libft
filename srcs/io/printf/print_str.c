@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:17:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/03 20:18:56 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:52:12 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 
 	if (!s && (p->prec < 0 || p->prec > 5))
 	{
-		__ft_printf_str(p, "(null)");	
+		__ft_printf_str(p, "(null)");
 		return ;
 	}
 	else if (!s)

@@ -25,7 +25,6 @@
 #  ifndef STDERR_FILENO
 #   define STDERR_FILENO 2
 #  endif
-#  define write(fd, buf, count) _write(fd, buf, (unsigned int)(count))
 # else
 #  include <unistd.h>
 # endif
