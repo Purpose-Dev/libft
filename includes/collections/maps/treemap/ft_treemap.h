@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 02:27:56 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/08 09:08:20 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/04 11:05:14 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ t_treemap			*treemap_create_with_comparator(
 void				treemap_destroy(t_treemap *map, void (*value_del)(void *));
 void				treemap_clear(t_treemap *map, void (*value_del)(void *));
 
+void				rotate_left(t_treemap *map, t_treemap_node *x);
+void				rotate_right(t_treemap *map, t_treemap_node *x);
+void				insert_fixup(t_treemap *map, t_treemap_node *z);
+t_treemap_node		*create_node(const char *key, void *value,
+						t_treemap_node *nil);
+int					insert_new_node(t_treemap *map, t_treemap_node *z);
 int					treemap_put(t_treemap *map, const char *key, void *value);
 void				*treemap_get(t_treemap *map, const char *key);
 void				*treemap_remove(t_treemap *map, const char *key);
