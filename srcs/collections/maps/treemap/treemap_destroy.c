@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 08:21:31 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/11 03:39:16 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:53:57 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "collections/maps//treemap/ft_treemap.h"
+#include "collections/maps/treemap/ft_treemap.h"
 
 static void	destroy_node(t_treemap_node *node, t_treemap_node *nil,
 						void (*value_del)(void *))

@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:21:05 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/04 10:33:42 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:52:45 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	fixup_left_case(t_treemap *map, t_treemap_node **z)
 	}
 }
 
-static void fixup_right_case(t_treemap *map, t_treemap_node **z)
+static void	fixup_right_case(t_treemap *map, t_treemap_node **z)
 {
 	t_treemap_node	*y;
 

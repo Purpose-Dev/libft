@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 02:59:26 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/13 03:14:00 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:53:43 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "collections/maps//treemap/ft_treemap.h"
+#include "collections/maps/treemap/ft_treemap.h"
 
 static int	search_value(const t_treemap_node *node, t_treemap_node *nil,
 							void *value, int (*cmp)(void *, void *))
