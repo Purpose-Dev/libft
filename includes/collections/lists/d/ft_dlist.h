@@ -14,6 +14,7 @@
 # define FT_DLIST_H
 
 # include <stddef.h>
+# include <stdlib.h>
 
 typedef struct s_dlist_node
 {
