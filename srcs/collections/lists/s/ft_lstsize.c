@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 00:01:50 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/13 00:01:58 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/05/12 23:59:05 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/05/12 23:59:21 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "collections/ft_list.h"
+#include "collections/lists/s/ft_list.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*current;
-	t_list	*next;
+	int	count;
 
-	if (!lst || !del || !*lst)
-		return ;
-	current = *lst;
-	while (current)
+	count = 0;
+	while (lst)
 	{
-		next = current->next;
-		ft_lstdelone(current, del);
-		current = next;
+		count++;
+		lst = lst->next;
 	}
-	*lst = NULL;
+	return (count);
 }
