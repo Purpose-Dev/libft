@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treemap_remove.c                                   :+:      :+:    :+:   */
+/*   treemap_head_tail.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 02:58:36 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/13 17:09:57 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/07/13 17:15:45 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/07/13 17:22:42 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "collections/maps/treemap/ft_treemap.h"
 
-void	*treemap_remove(t_treemap *map, const char *key)
+t_treemap	*treemap_tail_map(t_treemap *map, const char *from_key)
 {
-	t_treemap_node	*current;
-	int				cmp;
+	t_treemap	*new_map;
 
-	if (!map || !key)
+	if (!map || !from_key)
 		return (NULL);
-	current = map->root;
-	while (current != map->nil)
-	{
-		cmp = map->key_cmp(key, current->key);
-		if (cmp == 0)
-		{
-			map->size--;
-			return (current->value);
-		}
-		if (cmp < 0)
-			current = current->left;
-		else
-			current = current->right;
-	}
-	return (NULL);
+	new_map = treemap_create_with_comparator(map->key_cmp);
+	return (new_map);
 }
