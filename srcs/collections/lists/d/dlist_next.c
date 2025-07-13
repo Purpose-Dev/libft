@@ -1,0 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dlist_next.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/13 16:40:51 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/07/13 16:47:28 by rel-qoqu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "collections/lists/d/ft_dlist.h"
+
+t_dlist_node	*dlist_next(t_dlist_node *node)
+{
+	if (!node)
+		return (NULL);
+	return (node->next);
+}
