@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/07/03 20:06:06 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/07/13 22:00:10 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -242,10 +242,10 @@ endif
 
 norm:
 ifeq ($(DETECTED_OS),Windows)
-	norminette -RCheckDefine $(FIND_INCS_RAW)
+	norminette $(FIND_INCS_RAW)
 	norminette -RCheckForbiddenSourceHeaders $(FIND_SRCS_RAW)
 else
-	norminette -RCheckDefine $$(find $(INCS_DIR) -type f -name "*.h")
+	norminette $$(find $(INCS_DIR) -type f -name "*.h")
 	norminette -RCheckForbiddenSourceHeaders $$(find $(SRCS_DIR) -type f -name "*.c")
 endif
 
