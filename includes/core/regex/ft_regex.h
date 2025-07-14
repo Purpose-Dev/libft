@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 01:40:42 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/14 01:52:18 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:05:52 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_regex_token
 	struct s_regex_token	*next;
 	t_regex_token_type		type;
 	char					value;
+	char					padding[3];
 }	t_regex_token;
 
 typedef struct s_regex_match {
@@ -51,10 +52,11 @@ typedef struct s_regex_match {
 
 typedef struct s_regex_state {
 	int		state_id;
-	bool	is_final;
-	char	match_char;
-	bool	is_any_char;
 	int		next_state[2];
+	bool	is_final;
+	bool	is_any_char;
+	char	match_char;
+	char	padding;
 }	t_regex_state;
 
 typedef struct s_regex {
@@ -63,6 +65,7 @@ typedef struct s_regex {
 	int				num_states;
 	int				start_state;
 	bool			compiled;
+	char			padding[7];
 }	t_regex;
 
 // Regex compilation
