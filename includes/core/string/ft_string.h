@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:55:28 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 19:30:14 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:20:03 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_STRING_H
 
 # include <errno.h>
+# include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <sys/types.h>
@@ -48,6 +49,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+
+char	*ft_strjoin_multiple(int count, ...);
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
