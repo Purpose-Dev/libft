@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:42:37 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/14 16:46:52 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/14 22:34:13 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ typedef struct s_task_queue
 
 typedef struct s_thread_pool
 {
+	pthread_mutex_t	pool_mutex;
 	pthread_t		*threads;
 	t_task_queue	*queue;
 	int				thread_count;
-	pthread_mutex_t	pool_mutex;
 	bool			shutdown;
+	char			padding[3];
 }	t_thread_pool;
 
 t_thread_pool	*thread_pool_create(int thread_count);
