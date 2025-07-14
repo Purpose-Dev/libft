@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 02:06:51 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/14 02:15:28 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/14 02:27:20 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	compile_simple_pattern(t_regex *regex, const char *pattern)
 
 t_regex	*regex_compile(const char *pattern)
 {
-	 t_regex	*regex;
+	t_regex	*regex;
 
 	if (!pattern)
 		return (NULL);
