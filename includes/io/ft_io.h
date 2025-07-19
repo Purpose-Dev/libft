@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:56:45 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 01:05:46 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 00:38:50 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,18 @@
 # define FT_EOF (-1)
 # define FT_BUFSIZ 8192
 
-typedef int	t_ssize;
-# endif
+typedef struct s_ft_file
+{
+	char	*buffer;
+	size_t	buffer_size;
+	size_t	buffer_pos;
+	size_t	buffer_len;
+	int		fd;
+	int		eof;
+	int		error;
+	char	padding[4];
+}	t_ft_file;
+
 t_ft_file	*ft_stdin(void);
 t_ft_file	*ft_stdout(void);
 t_ft_file	*ft_stderr(void);
@@ -43,5 +53,14 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
+
+t_ft_file	*ft_fopen(const char *filename, const char *mode);
+int			ft_fclose(t_ft_file *stream);
+int			ft_fgetc(t_ft_file *stream);
+int			ft_getc(t_ft_file *stream);
+int			ft_getchar(void);
+char		*ft_fgets(char *str, int size, t_ft_file *stream);
+size_t		ft_fread(void *ptr, size_t size, size_t count, t_ft_file *stream);
+ssize_t		ft_getline(char **line_ptr, size_t *n, t_ft_file *stream);
 
 #endif // FT_IO_H
