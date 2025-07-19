@@ -13,9 +13,10 @@
 #ifndef FT_IO_H
 # define FT_IO_H
 
+# include <stdio.h>
+# include <stdlib.h>
+
 # ifdef _WIN32
-#  include <fcntl.h>
-#  include <io.h>
 #  ifndef STDIN_FILENO
 #   define STDIN_FILENO 0
 #  endif
@@ -29,14 +30,18 @@
 #  include <unistd.h>
 # endif
 
-# ifdef _WIN32
+# define FT_EOF (-1)
+# define FT_BUFSIZ 8192
 
 typedef int	t_ssize;
 # endif
+t_ft_file	*ft_stdin(void);
+t_ft_file	*ft_stdout(void);
+t_ft_file	*ft_stderr(void);
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
+void		ft_putnbr_fd(int n, int fd);
 
 #endif // FT_IO_H
