@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 17:27:26 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 17:55:28 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:27:53 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static bool	ttf_parse_table_directory(t_ttf_font *font)
 	uint32_t		offset;
 	uint16_t		i;
 
-	if (font->data_size < 12 + font->num_tables * 16)
+	if ((long)font->data_size < 12 + font->num_tables * 16)
 		return (false);
 	font->tables = malloc(sizeof(t_ttf_table_record) * font->num_tables);
 	if (!font->tables)
