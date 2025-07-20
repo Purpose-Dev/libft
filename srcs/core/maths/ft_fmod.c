@@ -6,10 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 08:44:08 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 14:07:16 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:30:20 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <float.h>
 #include "core/maths/ft_maths.h"
 
 double	ft_fmod(const double x, const double y)
@@ -30,7 +31,7 @@ double	ft_fmod(const double x, const double y)
 	if (ft_is_inf(y))
 		return (x);
 	if (x == 0.0)
-		return (x);
+		return (0.0);
 	quotient = x / y;
 	n = ft_trunc(quotient);
 	return (x - n * y);
