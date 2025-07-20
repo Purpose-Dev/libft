@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:19:19 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/18 11:50:19 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/20 13:45:05 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, const size_t len)
 		while (haystack[i + j] == needle[j] && (i + j) < len)
 		{
 			if (needle[j + 1] == '\0')
-				return ((char *)(intptr_t)&haystack[i]);
+				return ((char *)(intptr_t) & haystack[i]);
 			j++;
 		}
 		i++;
