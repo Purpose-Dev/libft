@@ -6,13 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 02:20:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/14 02:26:38 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:49:27 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/string/ft_string.h"
 
-static size_t	calculate_total_length(const int count, const va_list args)
+static size_t	calculate_total_length(const int count, va_list *args)
 {
 	size_t	total_len;
 	char	*str;
@@ -22,7 +22,7 @@ static size_t	calculate_total_length(const int count, const va_list args)
 	i = 0;
 	while (i < count)
 	{
-		str = va_arg(args, char *);
+		str = va_arg(*args, char *);
 		if (str)
 			total_len += ft_strlen(str);
 		i++;
@@ -30,7 +30,7 @@ static size_t	calculate_total_length(const int count, const va_list args)
 	return (total_len);
 }
 
-static char	*copy_strings(char *result, const int count, const va_list args)
+static char	*copy_strings(char *result, const int count, va_list *args)
 {
 	char	*str;
 	size_t	pos;
@@ -41,7 +41,7 @@ static char	*copy_strings(char *result, const int count, const va_list args)
 	i = 0;
 	while (i < count)
 	{
-		str = va_arg(args, char *);
+		str = va_arg(*args, char *);
 		if (str)
 		{
 			len = ft_strlen(str);
@@ -65,7 +65,7 @@ char	*ft_strjoin_multiple(const int count, ...)
 		return (ft_strdup(""));
 	va_start(args, count);
 	va_copy(args_copy, args);
-	total_len = calculate_total_length(count, args);
+	total_len = calculate_total_length(count, &args);
 	va_end(args);
 	result = malloc(sizeof(char) * (total_len + 1));
 	if (!result)
@@ -73,7 +73,7 @@ char	*ft_strjoin_multiple(const int count, ...)
 		va_end(args_copy);
 		return (NULL);
 	}
-	copy_strings(result, count, args_copy);
+	copy_strings(result, count, &args_copy);
 	va_end(args_copy);
 	return (result);
 }

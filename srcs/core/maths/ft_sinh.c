@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:54:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/04 03:33:15 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:00:01 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ double	ft_sinh(const double x)
 	if (x > 700)
 	{
 		errno = ERANGE;
-		return (INFINITY);
+		return ((double)INFINITY);
 	}
 	if (x < -700)
 	{
 		errno = ERANGE;
-		return (-INFINITY);
+		return (-(double)INFINITY);
 	}
 	exp_pos = exp(x);
 	exp_neg = exp(-x);

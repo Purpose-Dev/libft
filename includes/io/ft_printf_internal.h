@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:13:41 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/03 20:36:34 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:46:50 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			__ft_printf_uint_len(uintmax_t n);
 void		__ft_printf_char(t_printf_parser *p, char c);
 
 size_t		__ft_printf_strnlen(const char *s, size_t n);
-char		*__ft_str_errorname(int error);
+const char	*__ft_str_errorname(int error);
 
 void		__ft_printf_insert(t_printf_parser *p, char c);
 void		__ft_printf_padding(t_printf_parser *p, int len, int is_start,

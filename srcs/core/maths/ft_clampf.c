@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:51:33 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/06 22:57:23 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:03:55 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	ft_clampf(const double value, const double min, const double max)
 {
 	if (ft_is_nan(value) || ft_is_nan(min) || ft_is_nan(max))
-		return (NAN);
+		return ((double)NAN);
 	if (min <= max)
 	{
 		if (value < min)

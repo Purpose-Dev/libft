@@ -6,11 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:09:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:06:11 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:48:34 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/string/ft_string.h"
+#include <stdint.h>
 
 char	*ft_strchr(const char *s, const int c)
 {
@@ -18,7 +19,7 @@ char	*ft_strchr(const char *s, const int c)
 
 	if (!s)
 		return (NULL);
-	str = (char *)s;
+	str = (char *)(intptr_t)s;
 	while (*str != (char)c && *str != '\0')
 		str++;
 	if (*str == (char)c)
