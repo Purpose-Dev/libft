@@ -17,7 +17,7 @@ BraceWrapping:
   AfterEnum: false
   AfterFunction: true
   AfterNamespace: false
-  AfterStruct: false
+  AfterStruct: true
   AfterUnion: false
   AfterExternBlock: false
   BeforeCatch: false
