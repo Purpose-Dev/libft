@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/03 20:31:53 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:47:09 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <limits.h>
 
-static int	__ft_printf_set_mod(t_printf_parser *p, char *s, int mod)
+static int	__ft_printf_set_mod(t_printf_parser *p, const char *s, int mod)
 {
 	int	i;
 

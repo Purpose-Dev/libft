@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/07/14 23:48:14 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/07/18 11:45:18 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,9 @@ NAME            = libft.a
 TESTS_BIN		= run_tests
 AR              = ar rcs
 CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
-                  -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
+                  -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wformat=2 \
+				  -Winline -Wsign-conversion -Wundef -Wcast-align -Wcast-qual -Wwrite-strings \
+				  -Wuninitialized -Wdouble-promotion -Wfloat-equal -Wvla -Wnull-dereference \
                   -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS)
 DEBUG_FLAGS     = -g3 -O0 -DDEBUG
 

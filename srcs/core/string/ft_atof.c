@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:47:46 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 10:27:49 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:47:41 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	ft_atof(const char *str)
 		result = result * 10 + (*str++ - '0');
 	if (*str == '.')
 	{
-		auto double fraction = 0.1f;
+		auto double fraction = 0.1;
 		str++;
 		while (*str >= '0' && *str <= '9')
 		{
