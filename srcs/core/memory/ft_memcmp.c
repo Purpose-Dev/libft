@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:19:11 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:04:39 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:09:56 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_memcmp(const void *s1, const void *s2, const size_t n)
 	unsigned char	*str2;
 
 	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
+	str1 = (unsigned char *)(intptr_t)s1;
+	str2 = (unsigned char *)(intptr_t)s2;
 	while (i < n)
 	{
 		if (str1[i] != str2[i])

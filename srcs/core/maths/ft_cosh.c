@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:54:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/04 03:32:45 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:08:04 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ double	ft_cosh(const double x)
 	if (ft_is_nan(x))
 		return (x);
 	if (ft_is_inf(x))
-		return (INFINITY);
+		return ((double)INFINITY);
 	if (x > 700 || x < -700)
 	{
 		errno = ERANGE;
-		return (INFINITY);
+		return ((double)INFINITY);
 	}
 	exp_pos = exp(x);
 	exp_neg = exp(-x);

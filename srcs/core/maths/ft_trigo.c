@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cos.c                                           :+:      :+:    :+:   */
+/*   ft_trigo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:54:38 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/03 13:40:38 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:07:39 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static double	ft_trigo_check(const double x)
 	if (ft_is_nan(x))
 		return (x);
 	if (ft_is_inf(x))
-		return (errno = EDOM, NAN);
+		return (errno = EDOM, (double)NAN);
 	return (0.0);
 }
 

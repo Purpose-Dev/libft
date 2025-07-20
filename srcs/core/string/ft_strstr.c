@@ -6,11 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:46:07 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 10:01:25 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 13:55:11 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/string/ft_string.h"
+#include <stdint.h>
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
@@ -18,7 +19,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	const char	*n;
 
 	if (!needle)
-		return ((char *)haystack);
+		return ((char *)(intptr_t)haystack);
 	while (*haystack)
 	{
 		h = haystack;
@@ -29,7 +30,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 			n++;
 		}
 		if (!*n)
-			return ((char *)haystack);
+			return ((char *)(intptr_t)haystack);
 		haystack++;
 	}
 	return (NULL);

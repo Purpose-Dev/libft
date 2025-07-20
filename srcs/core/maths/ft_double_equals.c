@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:55:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/01 03:56:15 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:03:05 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_double_equals(const double a, const double b, double epsilon)
 		return (0);
 	if (ft_is_inf(a) && ft_is_inf(b))
 	{
-		if (a == b)
+		if ((a > 0) == (b > 0))
 			return (1);
 		return (0);
 	}

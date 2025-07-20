@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 17:52:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 06:56:23 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:00:25 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	ft_ceil(const double x)
 	if (x <= 0.0)
 		return ((double)((long long)x));
 	truncated_x = (double)((long long)x);
-	if (truncated_x != x)
+	if (truncated_x < x)
 		return (truncated_x + 1.0);
 	return (truncated_x);
 }
