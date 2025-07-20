@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:56:45 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 13:48:53 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:41:44 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int			ft_getchar(void);
 char		*ft_fgets(char *str, int size, t_ft_file *stream);
 size_t		ft_fread(void *ptr, size_t size, size_t count, t_ft_file *stream);
 ssize_t		ft_getline(char **line_ptr, size_t *n, t_ft_file *stream);
+int			ft_feof(t_ft_file *stream);
 
 #endif // FT_IO_H
