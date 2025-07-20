@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 13:29:46 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 21:31:49 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:26:00 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_ttf_point
 	float		y;
 	uint8_t		flags;
 	bool		on_curve;
+	char		padding[2];
 }	t_ttf_point;
 
 typedef struct s_ttf_contour
@@ -58,6 +59,7 @@ typedef struct s_ttf_contour
 	t_ttf_point	*points;
 	uint16_t	point_count;
 	uint16_t	end_point_index;
+	char		padding[4];
 }	t_ttf_contour;
 
 typedef struct s_ttf_composite_component
@@ -84,6 +86,7 @@ typedef struct s_ttf_glyph_data
 	uint16_t					component_count;
 	uint16_t					instruction_length;
 	bool						is_loaded;
+	char						padding[5];
 }	t_ttf_glyph_data;
 
 typedef struct s_ttf_kern_pair
@@ -97,6 +100,7 @@ typedef struct s_ttf_cmap_entry
 {
 	uint32_t	unicode_value;
 	uint16_t	glyph_index;
+	char		padding[2];
 }	t_ttf_cmap_entry;
 
 typedef struct s_ttf_table_record
@@ -187,6 +191,7 @@ struct s_ttf_bitmap
 	uint32_t			stride;
 	char				reserved[4];
 	t_ttf_pixel_format	format;
+	char				padding[4];
 };
 
 struct s_ttf_render_context
@@ -200,6 +205,7 @@ struct s_ttf_render_context
 	t_ttf_hinting_mode	hinting_mode;
 	bool				subpixel_rendering;
 	bool				gamma_correction;
+	char				padding[6];
 };
 
 uint16_t			ttf_read_u16_be(const uint8_t *data);

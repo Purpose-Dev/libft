@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:40:43 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 17:06:31 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:24:17 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_ttf_font_info
 	int16_t		line_gap;
 	uint16_t	num_glyphs;
 	bool		has_kerning;
+	char		padding[5];
 }	t_ttf_font_info;
 
 t_ttf_font				*ttf_load_font(const char *filename);
