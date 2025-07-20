@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 13:29:46 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 17:07:26 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 21:31:49 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,14 @@ typedef struct s_ttf_table_record
 
 typedef struct s_ttf_head_table
 {
+	int64_t		created;
+	int64_t		modified;
 	uint32_t	version;
 	uint32_t	font_revision;
 	uint32_t	checksum_adjustment;
 	uint32_t	magic_number;
 	uint16_t	flags;
 	uint16_t	units_per_em;
-	int64_t		created;
-	int64_t		modified;
 	int16_t		x_min;
 	int16_t		y_min;
 	int16_t		x_max;
@@ -126,6 +126,7 @@ typedef struct s_ttf_head_table
 	int16_t		font_direction_hint;
 	int16_t		index_to_loc_format;
 	int16_t		glyph_data_format;
+	char		reserved[2];
 }	t_ttf_head_table;
 
 typedef struct s_ttf_hhea_table
@@ -142,6 +143,7 @@ typedef struct s_ttf_hhea_table
 	int16_t		caret_slope_run;
 	int16_t		caret_offset;
 	uint16_t	num_h_metrics;
+	char		reserved[2];
 }	t_ttf_hhea_table;
 
 typedef struct s_ttf_maxp_table
@@ -152,27 +154,29 @@ typedef struct s_ttf_maxp_table
 	uint16_t	max_contours;
 	uint16_t	max_composite_points;
 	uint16_t	max_composite_contours;
+	char		reserved[2];
 }	t_ttf_maxp_table;
 
 struct s_ttf_font
 {
-	uint8_t				*data;
-	size_t				data_size;
-	uint16_t			num_tables;
 	t_ttf_table_record	*tables;
+	t_ttf_cmap_entry	*cmap_entries;
+	t_ttf_glyph_data	*glyphs;
+	uint32_t			*glyph_offsets;
+	uint8_t				*data;
+	t_ttf_kern_pair		*kern_pairs;
+	uint16_t			*h_metrics;
+	size_t				data_size;
 	t_ttf_head_table	head;
 	t_ttf_hhea_table	hhea;
 	t_ttf_maxp_table	maxp;
-	t_ttf_glyph_data	*glyphs;
-	uint32_t			*glyph_offsets;
-	t_ttf_kern_pair		*kern_pairs;
 	uint32_t			kern_count;
-	t_ttf_cmap_entry	*cmap_entries;
 	uint32_t			cmap_entry_count;
-	uint16_t			*h_metrics;
+	uint16_t			num_tables;
+	bool				is_loaded;
+	char				reserved[1];
 	char				family_name[TTF_NAME_BUFFER_SIZE];
 	char				style_name[TTF_NAME_BUFFER_SIZE];
-	bool				is_loaded;
 };
 
 struct s_ttf_bitmap
@@ -181,6 +185,7 @@ struct s_ttf_bitmap
 	uint32_t			width;
 	uint32_t			height;
 	uint32_t			stride;
+	char				reserved[4];
 	t_ttf_pixel_format	format;
 };
 
@@ -211,6 +216,8 @@ bool				ttf_parse_cmap_table(t_ttf_font *font);
 bool				ttf_parse_kern_table(t_ttf_font *font);
 bool				ttf_parse_name_table(t_ttf_font *font);
 
+uint8_t				*ttf_read_file_data(const char *filename,
+						size_t *data_size);
 t_ttf_table_record	*ttf_find_table(t_ttf_font *font, uint32_t tag);
 bool				ttf_validate_table_access(t_ttf_font *font,
 						uint32_t offset, uint32_t length);

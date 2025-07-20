@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 17:11:08 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 17:25:56 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 21:32:39 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 uint16_t	ttf_read_u16_be(const uint8_t *data)
 {
-	return (((uint16_t)data[0] << 8) | data[1]);
+	return ((uint16_t)(data[0] << 8) | data[1]);
 }
 
 uint32_t	ttf_read_u32_be(const uint8_t *data)
