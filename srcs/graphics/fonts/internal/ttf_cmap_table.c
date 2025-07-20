@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 23:33:39 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 23:53:04 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:56:48 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static uint32_t	ttf_find_unicode_subtable_offset(const uint8_t *data,
 	return (0);
 }
 
-static bool	ttf_parse_cmap_format4(t_ttf_font *font, const uint8_t *subtable)
+static bool	ttf_parse_cmap_format4(t_ttf_font *font)
 {
 	font->cmap_entries = malloc(sizeof(t_ttf_cmap_entry) * 256);
 	if (!font->cmap_entries)
@@ -51,7 +51,7 @@ static bool	ttf_parse_cmap_subtable(t_ttf_font *font, const uint8_t *data,
 	subtable = data + offset;
 	format = ttf_read_u16_be(subtable);
 	if (format == 4)
-		return (ttf_parse_cmap_format4(font, subtable));
+		return (ttf_parse_cmap_format4(font));
 	return (false);
 }
 
