@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 02:16:22 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/14 02:31:24 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:09:44 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static bool	match_at_position(const t_regex *regex, const char *text,
 	{
 		if (regex->states[current_state].is_final)
 			return (true);
-		match = false;
 		if (regex->states[current_state].is_any_char)
 			match = regex_match_any(text[text_pos]);
 		else
