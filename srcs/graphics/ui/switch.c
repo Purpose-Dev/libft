@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 12:22:49 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/21 00:00:58 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:06:41 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static inline uint32_t	lerp_u32(const uint32_t a, const uint32_t b,
 	return (
 		((ar + (uint32_t)((float)(br - ar) *t)) << 16)
 		| ((ag + (uint32_t)((float)(bg - ag) *t)) << 8)
-		| ((ab + (uint32_t)((float)(b & 0xff - ab) *t)))
+		| ((ab + (uint32_t)((float)(b & (0xff - ab)) *t)))
 	);
 }
 
