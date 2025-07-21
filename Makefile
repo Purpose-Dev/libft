@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/07/20 14:31:36 by smamalig         ###   ########.fr        #
+#    Updated: 2025/07/21 12:20:30 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,7 +166,7 @@ else
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
 	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
-	@printf "[%3d%%] Compiling %-30s\r" $(PROGRESS) "$<"
+	@printf "[%3d%%] Compiling %s\n" $(PROGRESS) "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Compile complete!\n"; fi
 
