@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:10:18 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 19:21:49 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:20:11 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ void	*ft_realloc(void *ptr, const size_t size)
 		return (NULL);
 	}
 	old_size = malloc_usable_size(ptr);
-	if (old_size == size)
+	if (size <= old_size)
 		return (ptr);
 	new_ptr = malloc(size);
 	if (!new_ptr)
 		return (NULL);
-	if (old_size > size)
-		old_size = size;
 	ft_memcpy(new_ptr, ptr, old_size);
 	free(ptr);
 	return (new_ptr);
