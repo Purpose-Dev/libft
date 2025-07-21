@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 05:00:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/19 05:16:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/21 09:41:26 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@
 
 static int	get_flags(const char *mode)
 {
-	if (ft_strcmp(mode, "r") == 0)
+	if (ft_strcmp(mode, "r") == 0 || ft_strcmp(mode, "rb") == 0)
 		return (O_RDONLY);
-	if (ft_strcmp(mode, "w") == 0)
-		return (O_RDONLY | O_CREAT | O_TRUNC);
-	if (ft_strcmp(mode, "a") == 0)
+	if (ft_strcmp(mode, "w") == 0 || ft_strcmp(mode, "wb") == 0)
+		return (O_WRONLY | O_CREAT | O_TRUNC);
+	if (ft_strcmp(mode, "a") == 0 || ft_strcmp(mode, "ab") == 0)
 		return (O_WRONLY | O_CREAT | O_APPEND);
-	if (ft_strcmp(mode, "r+") == 0)
+	if (ft_strcmp(mode, "r+") == 0 || ft_strcmp(mode, "r+b") == 0
+		|| ft_strcmp(mode, "rb+") == 0)
 		return (O_RDWR);
-	if (ft_strcmp(mode, "w+") == 0)
+	if (ft_strcmp(mode, "w+") == 0 || ft_strcmp(mode, "w+b") == 0
+		|| ft_strcmp(mode, "wb+") == 0)
 		return (O_RDWR | O_CREAT | O_TRUNC);
-	if (ft_strcmp(mode, "a+") == 0)
+	if (ft_strcmp(mode, "a+") == 0 || ft_strcmp(mode, "a+b") == 0
+		|| ft_strcmp(mode, "ab+") == 0)
 		return (O_RDWR | O_CREAT | O_APPEND);
 	return (-1);
 }
