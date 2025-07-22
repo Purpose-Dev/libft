@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:17:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/04 18:52:12 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/21 19:10:18 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 		__ft_printf_str(p, "");
 		return ;
 	}
-	len = (int)ft_strnlen(s, (size_t)p->prec);
+	if (p->prec < 0)
+		len = (int)ft_strlen(s);
+	else
+		len = (int)ft_strnlen(s, (size_t)p->prec);
 	i = 0;
 	__ft_printf_padding(p, len, PRINTF_START, PRINTF_OTHER);
 	while (i < len && __ft_can_print(p))
