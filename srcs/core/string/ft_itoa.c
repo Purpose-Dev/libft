@@ -6,24 +6,28 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:35 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:05:57 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:06:50 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/string/ft_string.h"
 
-static size_t	ft_count_digits(int n)
+static size_t	ft_count_digits(const int n)
 {
 	size_t	count;
+	long	nb;
 
 	if (n == 0)
 		return (1);
 	count = 0;
 	if (n < 0)
 		count++;
-	while (n != 0)
+	nb = n;
+	if (nb < 0)
+		nb = -nb;
+	while (nb > 0)
 	{
-		n /= 10;
+		nb /= 10;
 		count++;
 	}
 	return (count);
@@ -50,7 +54,7 @@ char	*ft_itoa(const int n)
 	}
 	while (nb > 0)
 	{
-		str[--len] = (char)nb % 10 + '0';
+		str[--len] = (char)(nb % 10 + '0');
 		nb /= 10;
 	}
 	return (str);
