@@ -67,11 +67,11 @@ CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshado
 DEBUG_FLAGS     = -g3 -O0 -DDEBUG
 
 # Source files and directories
-SRCS_DIR		= srcs
-INCS_DIR		= includes
+SRCS_DIR		= src
+INCS_DIR		= include
 OBJS_DIR        = objs
 DEBUG_DIR       = debug_objs
-TESTS_DIR		= tests
+TESTS_DIR		= test
 
 SRCS            = $(FIND_SRCS)
 TESTS_SRCS		= $(FIND_TESTS)
