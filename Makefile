@@ -6,56 +6,10 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/07/21 12:20:30 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/08/02 23:00:53 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-ifeq ($(OS),Windows_NT)
-    DETECTED_OS := Windows
-else
-    UNAME_S := $(shell uname -s 2>/dev/null)
-    ifeq ($(UNAME_S),Linux)
-        DETECTED_OS := Linux
-    endif
-    ifeq ($(UNAME_S),Darwin)
-        DETECTED_OS := Darwin
-    endif
-    ifeq ($(UNAME_S),CYGWIN*)
-        DETECTED_OS := Cygwin
-    endif
-    ifeq ($(UNAME_S),MINGW32*)
-        DETECTED_OS := MinGW
-    endif
-    ifeq ($(UNAME_S),MINGW64*)
-        DETECTED_OS := MinGW
-    endif
-endif
-
-ifeq ($(DETECTED_OS),Windows)
-    CC = gcc
-    RM = del /Q
-    RMDIR = rmdir /S /Q
-    MKDIR = if not exist
-    MKDIR_CMD = mkdir
-    SHELL = cmd
-    FIND_SRCS_RAW = $(wildcard $(SRCS_DIR)/*.c) $(wildcard $(SRCS_DIR)/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*.c) $(wildcard $(SRCS_DIR)/*/*/*/*.c)
-    FIND_SRCS = $(patsubst $(SRCS_DIR)/%,%,$(FIND_SRCS_RAW))
-    FIND_INCS_RAW = $(wildcard $(INCS_DIR)/*.h) $(wildcard $(INCS_DIR)/*/*.h) $(wildcard $(INCS_DIR)/*/*/*.h)
-    FIND_TESTS_RAW = $(wildcard $(TESTS_DIR)/*.c) $(wildcard $(TESTS_DIR)/*/*.c) $(wildcard $(TESTS_DIR)/*/*/*.c)
-    FIND_TESTS = $(patsubst $(TESTS_DIR)/%,%,$(FIND_TESTS_RAW))
-    PATH_SEP = \\
-else
-    CC = cc
-    RM = rm -f
-    RMDIR = rm -rf
-    MKDIR = mkdir -p
-    MKDIR_CMD =
-    FIND_SRCS = $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(SRCS_DIR)/||')
-    FIND_TESTS = $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(TESTS_DIR)/||')
-    PATH_SEP = /
-endif
-
-# Project configuration
 NAME            = libft.a
 TESTS_BIN		= run_tests
 AR              = ar rcs
@@ -66,7 +20,14 @@ CFLAGS          = -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshado
                   -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS)
 DEBUG_FLAGS     = -g3 -O0 -DDEBUG
 
-# Source files and directories
+CC				= clang
+RM				= rm -f
+RMDIR			= rm -rf
+MKDIR			= mkdir -p
+FIND_SRCS		= $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(SRCS_DIR)/||')
+FIND_TESTS		= $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(TESTS_DIR)/||')
+PATH_SEP		= /
+
 SRCS_DIR		= src
 INCS_DIR		= include
 OBJS_DIR        = objs
@@ -79,18 +40,13 @@ TESTS_SRCS		= $(FIND_TESTS)
 OBJS            = $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
 DEBUG_OBJS      = $(addprefix $(DEBUG_DIR)/, ${SRCS:.c=.o})
 
-ifeq ($(DETECTED_OS),Windows)
-    SUB_DIRS = $(INCS_DIR)
-else
-    SUB_DIRS = $(shell find $(INCS_DIR) -type d 2>/dev/null)
-endif
+SUB_DIRS = $(shell find $(INCS_DIR) -type d 2>/dev/null)
 
 INCLUDE_FLAGS   = $(addprefix -I, $(SUB_DIRS))
 
 OBJ_SUBDIRS     = $(sort $(dir $(OBJS)))
 DEBUG_SUBDIRS   = $(sort $(dir $(DEBUG_OBJS)))
 
-# OS detection for debugger configuration
 ifeq ($(DETECTED_OS),Darwin)
     DEBUGGER = lldb
     DEBUG_FLAGS += -g
@@ -101,50 +57,27 @@ else
     DEBUGGER_EXEC = gdb --args
 endif
 
-# Determine if address sanitizer is available
 SANITIZE := $(shell $(CC) -fsanitize=address -x c -c /dev/null -o /dev/null 2>/dev/null && echo "-fsanitize=address -fsanitize=undefined" || echo "")
 
-# Progress counter
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE := 0
 
-# Main targets
 all:	create_dirs $(NAME)
 
-ifeq ($(DETECTED_OS),Windows)
-create_dirs:
-	@for %%d in ($(OBJ_SUBDIRS)) do @if not exist "%%d" mkdir "%%d" 2>nul || echo >nul
-	@echo Created object directories
-else
 create_dirs:
 	@$(MKDIR) $(OBJ_SUBDIRS)
 	@echo "Created object directories"
-endif
 
-ifeq ($(DETECTED_OS),Windows)
-create_debug_dirs:
-	@for %%d in ($(DEBUG_SUBDIRS)) do @if not exist "%%d" mkdir "%%d" 2>nul || echo >nul
-	@echo Created debug object directories
-else
 create_debug_dirs:
 	@$(MKDIR) $(DEBUG_SUBDIRS)
 	@echo "Created debug object directories"
-endif
 
 $(OBJS_DIR):
-ifeq ($(DETECTED_OS),Windows)
-	@$(MKDIR) "$@" $(MKDIR_CMD) "$@" 2>nul || echo >nul
-else
 	@$(MKDIR) $@
-endif
 	@echo "Created objects directory"
 
 $(DEBUG_DIR):
-ifeq ($(DETECTED_OS),Windows)
-	@$(MKDIR) "$@" $(MKDIR_CMD) "$@" 2>nul || echo >nul
-else
 	@$(MKDIR) $@
-endif
 	@echo "Created debug objects directory"
 
 $(NAME): ${OBJS}
@@ -152,17 +85,6 @@ $(NAME): ${OBJS}
 	@$(AR) ${NAME} ${OBJS}
 	@echo "Library $(NAME) successfully created"
 
-ifeq ($(DETECTED_OS),Windows)
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@if not exist "$(dir $@)" mkdir "$(dir $@)" 2>nul || echo >nul
-	@echo Compiling $<
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(DEBUG_DIR)/%.o: $(SRCS_DIR)/%.c
-	@if not exist "$(dir $@)" mkdir "$(dir $@)" 2>nul || echo >nul
-	@echo Debug-compiling $<
-	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
-else
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
 	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
@@ -176,7 +98,6 @@ $(DEBUG_DIR)/%.o: $(SRCS_DIR)/%.c
 	@printf "[%3d%%] Debug-compiling %-30s\r" $(PROGRESS) "$<"
 	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Debug compile complete!\n"; fi
-endif
 
 debug: CURRENT_FILE := 0
 debug: create_debug_dirs debug_lib
@@ -188,13 +109,7 @@ debug_lib: $(DEBUG_OBJS)
 	@echo "Compiling debug library..."
 	@$(AR) $(NAME) $(DEBUG_OBJS)
 
-ifeq ($(DETECTED_OS),Windows)
-sanitize:
-	@echo "Address sanitizer not supported in this Windows environment"
-	@echo "Building without sanitizer..."
-	@$(MAKE) fclean
-	@$(MAKE) all
-else
+
 sanitize: CFLAGS += $(SANITIZE)
 sanitize: CURRENT_FILE := 0
 sanitize: fclean $(OBJS_DIR)
@@ -206,18 +121,7 @@ sanitize: fclean $(OBJS_DIR)
 		$(MAKE) all; \
 		echo "Address Sanitizer build complete"; \
 	fi
-endif
 
-ifeq ($(DETECTED_OS),Windows)
-clean:
-	@if exist "$(OBJS_DIR)" $(RMDIR) "$(OBJS_DIR)" 2>nul || echo >nul
-	@if exist "$(DEBUG_DIR)" $(RMDIR) "$(DEBUG_DIR)" 2>nul || echo >nul
-	@echo Objects removed
-
-fclean: clean
-	@if exist "$(NAME)" $(RM) "$(NAME)" 2>nul || echo >nul
-	@echo Library $(NAME) removed
-else
 clean:
 	@$(RMDIR) $(OBJS_DIR) 2>/dev/null || true
 	@$(RMDIR) $(DEBUG_DIR) 2>/dev/null || true
@@ -226,38 +130,24 @@ clean:
 fclean: clean
 	@$(RM) $(NAME) 2>/dev/null || true
 	@echo "Library $(NAME) removed"
-endif
 
 re: fclean all
 
 debug-vars:
 	@echo "DETECTED_OS: $(DETECTED_OS)"
 	@echo "SRCS_DIR: $(SRCS_DIR)"
-ifeq ($(DETECTED_OS),Windows)
-	@echo "FIND_SRCS_RAW: $(FIND_SRCS_RAW)"
-	@echo "FIND_INCS_RAW: $(FIND_INCS_RAW)"
-endif
 	@echo "SRCS: $(SRCS)"
 	@echo "OBJS: $(OBJS)"
 	@echo "OBJ_SUBDIRS: $(OBJ_SUBDIRS)"
 	@echo "TOTAL_FILES: $(TOTAL_FILES)"
 
 norm:
-ifeq ($(DETECTED_OS),Windows)
-	norminette $(FIND_INCS_RAW)
-	norminette -RCheckForbiddenSourceHeaders $(FIND_SRCS_RAW)
-else
 	norminette $$(find $(INCS_DIR) -type f -name "*.h")
 	norminette $$(find $(SRCS_DIR) -type f -name "*.c")
-endif
 
 tests: $(NAME)
-ifeq ($(DETECTED_OS),Windows)
-	@echo "Unit tests not supported on Windows in this Makefile"
-else
 	$(CC) $(CFLAGS) -I$(INCS_DIR) -o $(TESTS_BIN) $(TESTS_SRCS) $(NAME) -lcriterion
 	./$(TESTS_BIN)
-endif
 
 info:
 	@echo "┌───────────────────────────────────────────────────────┐"
