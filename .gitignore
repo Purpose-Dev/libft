@@ -58,3 +58,6 @@ dkms.conf
 .idea
 .vscode
 .vs
+
+# Tests
+run_tests*
