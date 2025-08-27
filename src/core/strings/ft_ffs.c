@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.h                                       :+:      :+:    :+:   */
+/*   ft_ffs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/27 02:33:16 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 02:48:27 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/08/27 02:36:20 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/08/27 02:44:07 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRINGS_H
-# define FT_STRINGS_H
+#include "core/strings/ft_strings.h"
 
-# include <stddef.h>
+int	ft_ffs(int i)
+{
+	int	pos;
 
-int			ft_strcasecmp(const char *s1, const char *s2);
-int			ft_strncasecmp(const char *s1, const char *s2, size_t n);
-const char	*ft_index(const char *s, int c);
-const char	*ft_rindex(const char *s, int c);
-int			ft_ffs(int i);
-
-#endif // FT_STRINGS_H
+	if (i == 0)
+		return (0);
+	pos = 1;
+	while ((i & 1) == 0)
+	{
+		i >>= 1;
+		pos++;
+	}
+	return (pos);
+}

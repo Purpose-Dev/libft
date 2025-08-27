@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.h                                       :+:      :+:    :+:   */
+/*   ft_index.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/27 02:33:16 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 02:48:27 by rel-qoqu         ###   ########.fr       */
+/*   Created: 2025/08/27 02:36:05 by rel-qoqu          #+#    #+#             */
+/*   Updated: 2025/08/27 02:49:00 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRINGS_H
-# define FT_STRINGS_H
+#include "core/strings/ft_strings.h"
 
-# include <stddef.h>
+const char	*ft_index(const char *s, const int c)
+{
+	char	ch;
 
-int			ft_strcasecmp(const char *s1, const char *s2);
-int			ft_strncasecmp(const char *s1, const char *s2, size_t n);
-const char	*ft_index(const char *s, int c);
-const char	*ft_rindex(const char *s, int c);
-int			ft_ffs(int i);
-
-#endif // FT_STRINGS_H
+	if (!s)
+		return (NULL);
+	ch = (char)c;
+	while (*s)
+	{
+		if (*s == ch)
+			return (s);
+		s++;
+	}
+	if (ch == '\0')
+		return (s);
+	return (NULL);
+}
