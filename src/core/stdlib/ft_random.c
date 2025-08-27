@@ -6,12 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 11:10:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/06/02 06:42:16 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/27 03:56:27 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/utils/ft_random.h"
 #include "core/maths/ft_maths.h"
+#include "core/stdlib/ft_stdlib.h"
 
 unsigned long int	g_ft_rand_next = 1;
 
