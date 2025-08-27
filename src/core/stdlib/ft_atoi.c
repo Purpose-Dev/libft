@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:19:33 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:05:46 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/27 03:59:47 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/string/ft_string.h"
+#include "core/stdlib/ft_stdlib.h"
 
 int	ft_atoi(const char *nptr)
 {

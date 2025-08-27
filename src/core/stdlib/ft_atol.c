@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:47:31 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 10:28:53 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/27 03:59:54 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/string/ft_string.h"
+#include "core/stdlib/ft_stdlib.h"
 
 long	ft_atol(const char *str)
 {

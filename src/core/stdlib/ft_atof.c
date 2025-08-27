@@ -6,11 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:47:46 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/18 11:47:41 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/08/27 04:00:11 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/string/ft_string.h"
+#include "core/stdlib/ft_stdlib.h"
 
 double	ft_atof(const char *str)
 {
