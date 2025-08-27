@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:55:28 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 02:30:17 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/27 03:47:56 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <errno.h>
 # include <stdarg.h>
 # include <stddef.h>
-# include <stdlib.h>
 # include <sys/types.h>
+
+# include "core/stdlib/ft_stdlib.h"
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strnlen(const char *s, size_t max_length);
@@ -40,9 +41,6 @@ char		*ft_strtok(char *str, const char *delim);
 const char	*ft_strpbrk(const char *s, const char *accept);
 const char	*ft_strerror(int errnum);
 
-int			ft_atoi(const char *nptr);
-long		ft_atol(const char *str);
-double		ft_atof(const char *str);
 char		*ft_itoa(int n);
 char		*ft_ltoa(long n);
 char		*ft_utoa(unsigned int n);
