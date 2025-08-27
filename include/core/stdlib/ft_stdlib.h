@@ -6,14 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 03:39:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 03:54:14 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/27 04:29:00 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STDLIB_H
 # define FT_STDLIB_H
-
-# include <stdlib.h>
 
 # if defined(__x86_64) || defined(_M_X64) || defined(__aarch64__)
 #  if defined(_M_ARM64)
@@ -39,7 +37,7 @@ extern unsigned long int	g_ft_rand_next;
 int			ft_atoi(const char *nptr);
 long		ft_atol(const char *str);
 double		ft_atof(const char *str);
-long		ft_strtol(const char *nptr, char **endptar, int base);
+long		ft_strtol(const char *nptr, char **endptr, int base);
 long		ft_strtoll(const char *nptr, char **endptar, int base);
 long		ft_strtoul(const char *nptr, char **endptar, int base);
 long		ft_strtoull(const char *nptr, char **endptar, int base);
