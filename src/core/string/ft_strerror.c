@@ -6,10 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 02:12:09 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 02:26:03 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:02:33 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "core/string/ft_string.h"
 
 static const char	*get_error_message(const int errnum)
