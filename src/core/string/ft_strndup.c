@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "core/memory/ft_memory.h"
 #include "core/string/ft_string.h"
 

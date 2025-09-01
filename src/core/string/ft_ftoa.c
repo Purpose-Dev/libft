@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 #include "core/string/ft_string.h"
 
 static char	*add_integer_part(char *str, const long int_part, int *pos)
