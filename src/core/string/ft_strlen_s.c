@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:25:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/09/01 08:35:41 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 08:45:55 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 ssize_t	ft_strlen_s(const char *str)
 {
-	ssize_t len;
+	ssize_t	len;
 
 	if (!str)
 	{
