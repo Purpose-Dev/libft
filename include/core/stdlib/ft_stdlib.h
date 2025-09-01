@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 03:39:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 04:29:00 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:00:20 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define FT_STDLIB_H
 
 # if defined(__x86_64) || defined(_M_X64) || defined(__aarch64__)
-#  if defined(_M_ARM64)
-#   define FT_ARCH_64BIT 1
-#  endif // _M_ARM64
 #  define FT_ARCH_64BIT 1
 # else
 #  define FT_ARCH_32BIT 1
 # endif // __x86_64 || _M_X64 || __aarch64__
+
+#  if defined(_M_ARM64)
+#   define FT_ARCH_64BIT 1
+#  endif // _M_ARM64
 
 # ifdef FT_ARCH_64BIT
 #  define FT_RAND_MAX 9223372036854775807LL  // 2^63-1 for 64-bit

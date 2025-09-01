@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 11:10:32 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 03:56:27 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 08:33:06 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_rand(void)
 
 double	ft_randf(void)
 {
-	return ((double) ft_rand() / (FT_RAND_MAX + 1.0));
+	return ((double) ft_rand() / ((double)FT_RAND_MAX + 1.0));
 }
 
 int	ft_rand_range(int min, int max)
