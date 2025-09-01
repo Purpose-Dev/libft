@@ -6,9 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:50:25 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/05/31 23:07:10 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 08:42:50 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 #include "core/string/ft_string.h"
 
