@@ -6,12 +6,13 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 04:17:37 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 04:27:50 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 08:40:33 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <limits.h>
+#include <stdint.h>
 
 #include "core/ctype/ft_ctype.h"
 #include "core/stdlib/ft_stdlib.h"
@@ -77,7 +78,7 @@ long	ft_strtol(const char *nptr, char **endptr, int base)
 	{
 		errno = EINVAL;
 		if (endptr)
-			*endptr = (char *)nptr;
+			*endptr = (char *)(intptr_t)nptr;
 		return (0);
 	}
 	result = 0;
@@ -96,7 +97,7 @@ long	ft_strtol(const char *nptr, char **endptr, int base)
 		{
 			errno = ERANGE;
 			if (endptr)
-				*endptr = (char *)nptr;
+				*endptr = (char *)(intptr_t)nptr;
 			if (sign == 1)
 				return (LONG_MAX);
 			return (LONG_MIN);
@@ -107,10 +108,10 @@ long	ft_strtol(const char *nptr, char **endptr, int base)
 	if (!has_digits)
 	{
 		if (endptr)
-			*endptr = (char *)start;
+			*endptr = (char *)(intptr_t)start;
 		return (0);
 	}
 	if (endptr)
-		*endptr = (char *)nptr;
+		*endptr = (char *)(intptr_t)nptr;
 	return (result * sign);
 }
