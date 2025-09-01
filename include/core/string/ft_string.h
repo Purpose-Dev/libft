@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:55:28 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 03:47:56 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/01 08:42:08 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char		*ft_utoa(unsigned int n);
 char		*ft_ftoa(double f, int precision);
 
 char		*ft_strdup(const char *s);
+char		*ft_strndup(const char *str, size_t n);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strtrim(const char *s1, const char *set);
