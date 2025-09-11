@@ -6,12 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 02:12:09 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/28 14:02:33 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/11 20:50:48 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "core/string/ft_string.h"
+#include "io/ft_printf.h"
 
 static const char	*get_error_message(const int errnum)
 {
@@ -41,18 +41,11 @@ const char	*ft_strerror(const int errnum)
 {
 	static char	unknown_buffer[64];
 	const char	*msg;
-	char		*num_str;
 
 	msg = get_error_message(errnum);
 	if (ft_strcmp(msg, "Unknown error") == 0)
 	{
-		ft_strcpy(unknown_buffer, "Unknown error ");
-		num_str = ft_itoa(errnum);
-		if (num_str)
-		{
-			ft_strcat(unknown_buffer, num_str);
-			free(num_str);
-		}
+		ft_snprintf(unknown_buffer, 64, "Unknown error %d", errnum);
 		return (unknown_buffer);
 	}
 	return (msg);
