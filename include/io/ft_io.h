@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:56:45 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 17:41:44 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:28:56 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_putendl_fd(const char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
 t_ft_file	*ft_fopen(const char *filename, const char *mode);
-int			ft_fclose(t_ft_file *stream);
+ssize_t		ft_fclose(t_ft_file *stream);
 int			ft_fgetc(t_ft_file *stream);
 int			ft_getc(t_ft_file *stream);
 int			ft_getchar(void);
