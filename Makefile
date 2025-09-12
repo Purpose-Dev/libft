@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/08/03 00:22:50 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/09/12 11:07:37 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,14 +48,19 @@ OBJ_SUBDIRS		= $(sort $(dir $(OBJS)))
 DEBUG_SUBDIRS	= $(sort $(dir $(DEBUG_OBJS)))
 TEST_SUBDIRS	= $(sort $(dir $(TESTS_OBJS)))
 
+# Dependency files
+DEPS			= $(OBJS:.o=.d)
+DEBUG_DEPS		= $(DEBUG_OBJS:.o=.d)
+TESTS_DEPS		= $(TESTS_OBJS:.o=.d)
+
 # Compilation flags
 CFLAGS			= -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
                   -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wformat=2 \
 				  -Winline -Wsign-conversion -Wundef -Wcast-align -Wcast-qual -Wwrite-strings \
 				  -Wuninitialized -Wdouble-promotion -Wvla -Wnull-dereference \
-                  -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS)
+                  -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS) -MMD -MP
 
-CXX_FLAGS		= -Wall -Wextra -Werror -std=c++17 -march=native -pedantic $(INCLUDE_FLAGS)
+CXX_FLAGS		= -Wall -Wextra -Werror -std=c++17 -march=native -pedantic $(INCLUDE_FLAGS) -MMD -MP
 
 DEBUG_FLAGS		= -g3 -O0 -DDEBUG
 RELEASE_FLAGS	= -O3 -flto -funroll-loops -fomit-frame-pointer
@@ -270,3 +275,7 @@ info:
 .PHONY: all debug debug_lib sanitize clean fclean re re-tests info create_dirs \
         create_debug_dirs create_tests_dirs debug-vars norm tests tests-build \
         tests-run tests-verbose tests-filter tests-sanitize debug-tests check-gtest
+
+-include $(DEPS) $(DEBUG_DEPS) $(TESTS_DEPS)
+
+.SECONDARY: $(OBJS)
