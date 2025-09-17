@@ -58,7 +58,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wcon
                   -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wformat=2 \
 				  -Winline -Wsign-conversion -Wundef -Wcast-align -Wcast-qual -Wwrite-strings \
 				  -Wuninitialized -Wdouble-promotion -Wvla -Wnull-dereference \
-                  -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS) -MMD -MP
+                  -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS) -MMD -MP -fPIC
 
 CXX_FLAGS		= -Wall -Wextra -Werror -std=c++17 -march=native -pedantic $(INCLUDE_FLAGS) -MMD -MP
 
