@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 04:17:37 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/09/01 08:40:33 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:17:36 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,8 @@
 #include <limits.h>
 #include <stdint.h>
 
-#include "core/ctype/ft_ctype.h"
 #include "core/stdlib/ft_stdlib.h"
 #include "core/stdlib/ft_stdlib_internal.h"
-
-static const char	*ft_skip_whitespace(const char *nptr)
-{
-	while (ft_isspace((unsigned char)*nptr))
-		nptr++;
-	return (nptr);
-}
-
-static int	ft_detect_base(const char **nptr, const int base)
-{
-	if (base == 0)
-	{
-		if (**nptr == '0')
-		{
-			if (*(*nptr + 1) == 'x' || *(*nptr + 1) == 'X')
-			{
-				*nptr += 2;
-				return (16);
-			}
-			(*nptr)++;
-			return (8);
-		}
-		return (10);
-	}
-	if (base == 16)
-	{
-		if (**nptr == '0' && (*(*nptr + 1) == 'x' || *(*nptr + 1) == 'X'))
-			*nptr += 2;
-	}
-	return (base);
-}
 
 static int	ft_will_overflow(const long result, const int digit,
 				const int sign, const int base)
@@ -66,13 +34,63 @@ static int	ft_will_overflow(const long result, const int digit,
 	return (result > limit || (result == limit && digit > limit_digit));
 }
 
-long	ft_strtol(const char *nptr, char **endptr, int base)
+static long	ft_return_overflow(const char *nptr, char **endptr, const int sign)
+{
+	if (endptr)
+		*endptr = (char *)(intptr_t)nptr;
+	if (sign == 1)
+		return (LONG_MAX);
+	return (LONG_MIN);
+}
+
+static int	ft_process_digit(const char **nptr, long *result, const int base,
+				const int sign)
+{
+	int	digit;
+
+	digit = ft_char_to_digit(**nptr, base);
+	if (digit == -1)
+		return (0);
+	if (ft_will_overflow(*result, digit, sign, base))
+	{
+		errno = ERANGE;
+		return (-1);
+	}
+	*result = *result * base + digit;
+	(*nptr)++;
+	return (1);
+}
+
+static long	ft_parse_digits(const char *nptr, char **endptr, const int base,
+				const int sign)
 {
 	long		result;
-	int			sign;
-	int			digit;
-	const char	*start;
 	int			has_digits;
+	const char	*start;
+	int			status;
+
+	result = 0;
+	has_digits = 0;
+	start = nptr;
+	while (*nptr != '\0')
+	{
+		status = ft_process_digit(&nptr, &result, base, sign);
+		if (status == 0)
+			break ;
+		if (status == -1)
+			return (ft_return_overflow(nptr, endptr, sign));
+		has_digits = 1;
+	}
+	if (!has_digits && endptr)
+		*endptr = (char *)(intptr_t)start;
+	else if (endptr)
+		*endptr = (char *)(intptr_t)nptr;
+	return (result * sign);
+}
+
+long	ft_strtol(const char *nptr, char **endptr, int base)
+{
+	int	sign;
 
 	if (!nptr || base < 0 || base == 1 || base > 36)
 	{
@@ -81,37 +99,8 @@ long	ft_strtol(const char *nptr, char **endptr, int base)
 			*endptr = (char *)(intptr_t)nptr;
 		return (0);
 	}
-	result = 0;
-	has_digits = 0;
 	nptr = ft_skip_whitespace(nptr);
-	start = nptr;
 	sign = ft_parse_sign(&nptr);
 	base = ft_detect_base(&nptr, base);
-	while (*nptr)
-	{
-		digit = ft_char_to_digit(*nptr, base);
-		if (digit == -1)
-			break ;
-		has_digits = 1;
-		if (ft_will_overflow(result, digit, sign, base))
-		{
-			errno = ERANGE;
-			if (endptr)
-				*endptr = (char *)(intptr_t)nptr;
-			if (sign == 1)
-				return (LONG_MAX);
-			return (LONG_MIN);
-		}
-		result = result * base + digit;
-		nptr++;
-	}
-	if (!has_digits)
-	{
-		if (endptr)
-			*endptr = (char *)(intptr_t)start;
-		return (0);
-	}
-	if (endptr)
-		*endptr = (char *)(intptr_t)nptr;
-	return (result * sign);
+	return (ft_parse_digits(nptr, endptr, base, sign));
 }

@@ -6,10 +6,11 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 04:22:55 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/08/27 04:28:07 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:17:45 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "core/ctype/ft_ctype.h"
 #include "core/stdlib/ft_stdlib_internal.h"
 
 int	ft_is_valid_base(const int c, const int base)
@@ -50,4 +51,33 @@ int	ft_parse_sign(const char **nptr)
 		(*nptr)++;
 	}
 	return (sign);
+}
+
+const char	*ft_skip_whitespace(const char *nptr)
+{
+	while (ft_isspace((unsigned char)*nptr))
+		nptr++;
+	return (nptr);
+}
+
+int	ft_detect_base(const char **nptr, const int base)
+{
+	if (base == 0)
+	{
+		if (**nptr == '0')
+		{
+			if (*(*nptr + 1) == 'x' || *(*nptr + 1) == 'X')
+			{
+				*nptr += 2;
+				return (16);
+			}
+			(*nptr)++;
+			return (8);
+		}
+		return (10);
+	}
+	if (base == 16 && **nptr == '0'
+		&& (*(*nptr + 1) == 'x' || *(*nptr + 1) == 'X'))
+		*nptr += 2;
+	return (base);
 }
