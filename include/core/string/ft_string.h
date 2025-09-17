@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 00:55:28 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/09/01 08:42:08 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:20:16 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 size_t		ft_strcspn(const char *s, const char *reject);
 size_t		ft_strspn(const char *s, const char *accept);
 char		*ft_strtok(char *str, const char *delim);
+char		*ft_strtok_r(char *str, const char *delim, char **saveptr);
 const char	*ft_strpbrk(const char *s, const char *accept);
 const char	*ft_strerror(int errnum);
 

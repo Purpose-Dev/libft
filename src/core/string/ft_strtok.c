@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 09:46:56 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/03 10:09:45 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:21:32 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,30 @@ char	*ft_strtok(char *str, const char *delim)
 		next_token++;
 	if (*next_token)
 		*next_token++ = '\0';
+	return (token_start);
+}
+
+char	*ft_strtok_r(char *str, const char *delim, char **saveptr)
+{
+	char	*token_start;
+
+	if (str)
+		*saveptr = str;
+	if (!*saveptr)
+		return (NULL);
+	while (**saveptr && is_delimiter(**saveptr, delim))
+		(*saveptr)++;
+	if (!**saveptr)
+	{
+		*saveptr = NULL;
+		return (NULL);
+	}
+	token_start = *saveptr;
+	while (**saveptr && !is_delimiter(**saveptr, delim))
+		(*saveptr)++;
+	if (**saveptr)
+		*(*saveptr)++ = '\0';
+	else
+		*saveptr = NULL;
 	return (token_start);
 }
