@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 03:39:20 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/09/01 08:45:20 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/10/26 20:44:36 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void		ft_srand(unsigned int seed);
 int			ft_rand(void);
 double		ft_randf(void);
 int			ft_rand_range(int min, int max);
+
+int			ft_atexit(void (*func)(void));
 
 #endif // FT_STDLIB_H
