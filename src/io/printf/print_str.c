@@ -6,15 +6,12 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:17:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/21 19:10:18 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:02:50 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io/ft_printf_internal.h"
 #include "core/string/ft_string.h"
-
-#include <string.h>
-#include <errno.h>
+#include "io/ft_printf_internal.h"
 
 static int	__ft_can_print(t_printf_parser *p)
 {
@@ -35,7 +32,7 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 		__ft_printf_str(p, "(null)");
 		return ;
 	}
-	else if (!s)
+	if (!s)
 	{
 		__ft_printf_str(p, "");
 		return ;
@@ -56,5 +53,5 @@ void	__ft_printf_strerror(t_printf_parser *p)
 	if (p->flags & PRINTF_FLAG_ALTERNATE)
 		__ft_printf_str(p, __ft_str_errorname(errno));
 	else
-		__ft_printf_str(p, strerror(errno));
+		__ft_printf_str(p, ft_strerror(errno));
 }

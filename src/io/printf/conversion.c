@@ -6,14 +6,12 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/18 11:47:09 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/10/26 21:59:04 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io/ft_printf_internal.h"
 #include "core/string/ft_string.h"
-
-#include <limits.h>
+#include "io/ft_printf_internal.h"
 
 static int	__ft_printf_set_mod(t_printf_parser *p, const char *s, int mod)
 {

@@ -6,14 +6,15 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:17:29 by smamalig          #+#    #+#             */
-/*   Updated: 2025/07/03 20:31:27 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:01:16 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io/ft_printf_internal.h"
-#include "core/ctype/ft_ctype.h"
 #include <errno.h>
 #include <limits.h>
+
+#include "core/ctype/ft_ctype.h"
+#include "io/ft_printf_internal.h"
 
 static void	__ft_printf_error(int error)
 {
