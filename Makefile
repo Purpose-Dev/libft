@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/10/26 12:55:30 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/10/26 19:03:11 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ POSIX_FLAGS				:= -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=700
 C_FLAGS					:= $(WARN_FLAGS) $(LIB_FLAGS) $(INCLUDE_FLAGS) -std=c99 -march=native \
 							 $(POSIX_FLAGS) $(DEPS_FLAGS) -fPIC
 
-C_FLAGS_RELEASE			:= $(C_FLAGS) -O3 -DNDEBUG -flto -funroll-loops -fomit-frame-pointer
+C_FLAGS_RELEASE			:= $(C_FLAGS) -O3 -DNDEBUG -funroll-loops -fomit-frame-pointer
 C_FLAGS_DEBUG			:= $(C_FLAGS) -g3 -Og -DDEBUG
 C_FLAGS_SAN				:= $(C_FLAGS) -g -fsanitize=address,undefined -fno-omit-frame-pointer
 
@@ -133,19 +133,19 @@ all: $(NAME)
 
 $(NAME): $(RELEASE_OBJS)
 	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@"
-	@$(AR) $(NAME) $(RELEASE_OBJS)
+	@$(AR) $@ $^
 
 debug_lib: $(DEBUG_NAME)
 
 $(DEBUG_NAME): $(DEBUG_OBJS)
 	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@ (debug)"
-	@$(AR) $(DEBUG_NAME) $(DEBUG_OBJS)
+	@$(AR) $@ $^
 
 sanitize_lib: $(SANITIZED_NAME)
 
 $(SANITIZED_NAME): $(SAN_OBJS)
 	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@ (ASan+UBSan)"
-	@$(AR) $(SANITIZED_NAME) $(SAN_OBJS)
+	@$(AR) $@ $^
 
 # ============================================================================ #
 # Compilation rules (Pattern Rules)
