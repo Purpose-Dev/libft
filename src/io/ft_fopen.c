@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 05:00:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/21 09:41:26 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/10/26 19:57:02 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static t_ft_file	*init_file_struct(const int fd)
 	file = malloc(sizeof(t_ft_file));
 	if (!file)
 		return (NULL);
-	file->buffer = malloc(FT_BUFSIZ);
+	file->buffer = malloc(FT_BUFFER_SIZE);
 	if (!file->buffer)
 	{
 		free(file);
 		return (NULL);
 	}
 	file->fd = fd;
-	file->buffer_size = FT_BUFSIZ;
+	file->buffer_size = FT_BUFFER_SIZE;
 	file->buffer_pos = 0;
 	file->buffer_len = 0;
 	file->eof = 0;

@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 05:57:07 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/20 00:36:01 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/10/26 19:57:02 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int	init_std_file(t_ft_file *file)
 {
 	if (file->buffer)
 		return (0);
-	file->buffer = malloc(FT_BUFSIZ);
+	file->buffer = malloc(FT_BUFFER_SIZE);
 	if (!file->buffer)
 		return (-1);
-	file->buffer_size = FT_BUFSIZ;
+	file->buffer_size = FT_BUFFER_SIZE;
 	file->buffer_pos = 0;
 	file->buffer_len = 0;
 	file->eof = 0;
