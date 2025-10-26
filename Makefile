@@ -6,239 +6,256 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/09/12 11:07:37 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/10/26 12:55:30 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= libft.a
-TESTS_BIN		= run_tests
-TESTS_SANITIZE	= run_tests_sanitize
+# ============================================================================ #
+# Project
+# ============================================================================ #
+NAME					:= libft.a
+DEBUG_NAME				:= libft_debug.a
+SANITIZED_NAME			:= libft_sanitized.a
 
-AR				= ar rcs
-CC				= clang
-CXX				= c++
-RM				= rm -f
-RMDIR			= rm -rf
-MKDIR			= mkdir -p
+TESTS_BIN				:= run_tests
+TESTS_DEBUG				:= run_tests_debug
+TESTS_SANITIZE			:= run_tests_sanitize
 
+# ============================================================================ #
+# Compilers and tools
+# ============================================================================ #
+C_COMPILER				:= clang
+CXX_COMPILER			:= c++
+AR						:= ar rcs
+RMF						:= rm -f
+RMD						:= rm -rf
+MKDIR					:= mkdir -p
+
+# ============================================================================ #
 # Directories
-SRCS_DIR		= src
-INCS_DIR		= include
-TESTS_DIR		= test
-OBJS_DIR		= objs
-DEBUG_DIR		= debug_objs
-TESTS_OBJS_DIR	= tests_objs
+# ============================================================================ #
+SOURCE_DIR				:= src
+INCLUDE_DIR				:= include
+TESTS_DIR				:= test
+BUILD_DIR				:= build
+LIB_BUILD_DIR			:= $(BUILD_DIR)/lib
+LIB_BUILD_RELEASE_DIR	:= $(LIB_BUILD_DIR)/release
+LIB_BUILD_DEBUG_DIR		:= $(LIB_BUILD_DIR)/debug
+LIB_BUILD_SAN_DIR		:= $(LIB_BUILD_DIR)/san
+TESTS_BUILD_DIR			:= $(BUILD_DIR)/tests
+TESTS_BUILD_RELEASE_DIR	:= $(TESTS_BUILD_DIR)/release
+TESTS_BUILD_DEBUG_DIR	:= $(TESTS_BUILD_DIR)/debug
+TESTS_BUILD_SAN_DIR		:= $(TESTS_BUILD_DIR)/san
 
+# ============================================================================ #
+# Compiler flags (C)
+# ============================================================================ #
+WARN_FLAGS				:= -Wall -Wextra -Werror -Wshadow -Wformat=2 -Winline \
+							-Wsign-conversion -Wconversion -Wcast-align -Wcast-qual \
+							-Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations \
+							-Wold-style-definition -Wundef -Wnull-dereference -Wuninitialized \
+							-Wwrite-strings -Wpadded -Wdouble-promotion -Wvla -pedantic
+LIB_FLAGS				:= -pthread
+DEPS_FLAGS				:= -MMD -MP
+SUB_DIRS				:= $(shell find $(INCLUDE_DIR) -type d 2>/dev/null)
+INCLUDE_FLAGS			:= $(addprefix -I, $(SUB_DIRS))
+POSIX_FLAGS				:= -D_DEFAULT_SOURCE -D_XOPEN_SOURCE=700
+C_FLAGS					:= $(WARN_FLAGS) $(LIB_FLAGS) $(INCLUDE_FLAGS) -std=c99 -march=native \
+							 $(POSIX_FLAGS) $(DEPS_FLAGS) -fPIC
+
+C_FLAGS_RELEASE			:= $(C_FLAGS) -O3 -DNDEBUG -flto -funroll-loops -fomit-frame-pointer
+C_FLAGS_DEBUG			:= $(C_FLAGS) -g3 -Og -DDEBUG
+C_FLAGS_SAN				:= $(C_FLAGS) -g -fsanitize=address,undefined -fno-omit-frame-pointer
+
+
+# ============================================================================ #
+# Compiler flags (CXX)
+# ============================================================================ #
+CXX_FLAGS				:= -Wall -Wextra -Werror -std=c++17 -march=native -pedantic\
+							$(INCLUDE_FLAGS) $(DEPS_FLAGS)
+
+CXX_FLAGS_RELEASE		:= $(CXX_FLAGS) -O3 -DNDEBUG -flto
+CXX_FLAGS_DEBUG			:= $(CXX_FLAGS) -g3 -Og -DDEBUG
+CXX_FLAGS_SAN			:= $(CXX_FLAGS) -g -fsanitize=address,undefined -fno-omit-frame-pointer
+
+GTEST_FLAGS				:= -lgtest -lgtest_main -lpthread
+
+# ============================================================================ #
 # Source files discovery
-FIND_SRCS		= $(shell find $(SRCS_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(SRCS_DIR)/||')
-FIND_TESTS		= $(shell find $(TESTS_DIR) -name "*.cpp" -type f 2>/dev/null | sed 's|$(TESTS_DIR)/||')
+# ============================================================================ #
+FIND_SRCS				= $(shell find $(SOURCE_DIR) -name "*.c" -type f 2>/dev/null | sed 's|$(SOURCE_DIR)/||')
+FIND_TESTS				= $(shell find $(TESTS_DIR) -name "*.cpp" -type f 2>/dev/null | sed 's|$(TESTS_DIR)/||')
 
-SRCS			= $(FIND_SRCS)
-TESTS_SRCS		= $(FIND_TESTS)
+SRCS					:= $(FIND_SRCS)
+TESTS_SRCS				:= $(FIND_TESTS)
 
-OBJS			= $(addprefix $(OBJS_DIR)/, ${SRCS:.c=.o})
-DEBUG_OBJS		= $(addprefix $(DEBUG_DIR)/, ${SRCS:.c=.o})
-TESTS_OBJS		= $(addprefix $(TESTS_OBJS_DIR)/, ${TESTS_SRCS:.cpp=.o})
+# ============================================================================ #
+# Object and dependencies (library)
+# ============================================================================ #
+RELEASE_OBJS			:= $(addprefix $(LIB_BUILD_RELEASE_DIR)/, $(SRCS:.c=.o))
+DEBUG_OBJS				:= $(addprefix $(LIB_BUILD_DEBUG_DIR)/, $(SRCS:.c=.o))
+SAN_OBJS				:= $(addprefix $(LIB_BUILD_SAN_DIR)/, $(SRCS:.c=.o))
 
-# Include directories
-SUB_DIRS		= $(shell find $(INCS_DIR) -type d 2>/dev/null)
-INCLUDE_FLAGS	= $(addprefix -I, $(SUB_DIRS))
+RELEASE_DEPS			:= $(RELEASE_OBJS:.o=.d)
+DEBUG_DEPS				:= $(DEBUG_OBJS:.o=.d)
+SAN_DEPS				:= $(SAN_OBJS:.o=.d)
 
-OBJ_SUBDIRS		= $(sort $(dir $(OBJS)))
-DEBUG_SUBDIRS	= $(sort $(dir $(DEBUG_OBJS)))
-TEST_SUBDIRS	= $(sort $(dir $(TESTS_OBJS)))
+# ============================================================================ #
+# Object and dependencies (library)
+# ============================================================================ #
+TESTS_OBJS_RELEASE		:= $(addprefix $(TESTS_BUILD_RELEASE_DIR)/, $(TESTS_SRCS:.cpp=.o))
+TESTS_OBJS_DEBUG		:= $(addprefix $(TESTS_BUILD_DEBUG_DIR)/, $(TESTS_SRCS:.cpp=.o))
+TESTS_OBJS_SAN			:= $(addprefix $(TESTS_BUILD_SAN_DIR)/, $(TESTS_SRCS:.cpp=.o))
 
-# Dependency files
-DEPS			= $(OBJS:.o=.d)
-DEBUG_DEPS		= $(DEBUG_OBJS:.o=.d)
-TESTS_DEPS		= $(TESTS_OBJS:.o=.d)
+TESTS_DEPS_RELEASE		:= $(TESTS_OBJS_RELEASE:.o=.d)
+TESTS_DEPS_DEBUG		:= $(TESTS_OBJS_DEBUG:.o=.d)
+TESTS_DEPS_SAN			:= $(TESTS_OBJS_SAN:.o=.d)
 
-# Compilation flags
-CFLAGS			= -Wall -Wextra -Werror -std=c99 -march=native -pedantic -Wshadow -Wconversion \
-                  -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wformat=2 \
-				  -Winline -Wsign-conversion -Wundef -Wcast-align -Wcast-qual -Wwrite-strings \
-				  -Wuninitialized -Wdouble-promotion -Wvla -Wnull-dereference \
-                  -Wold-style-definition -Wpadded -D_DEFAULT_SOURCE $(INCLUDE_FLAGS) -MMD -MP -fPIC
-
-CXX_FLAGS		= -Wall -Wextra -Werror -std=c++17 -march=native -pedantic $(INCLUDE_FLAGS) -MMD -MP
-
-DEBUG_FLAGS		= -g3 -O0 -DDEBUG
-RELEASE_FLAGS	= -O3 -flto -funroll-loops -fomit-frame-pointer
-
-GTEST_FLAGS		= -lgtest -lgtest_main -lpthread
-
-# Platform detection
+# ============================================================================ #
+# Environment detection
+# ============================================================================ #
+DETECTED_OS				:= $(shell uname)
 ifeq ($(DETECTED_OS),Darwin)
     DEBUGGER = lldb
-    DEBUG_FLAGS += -g
     DEBUGGER_EXEC = lldb --
 else
     DEBUGGER = gdb
-    DEBUG_FLAGS += -ggdb
     DEBUGGER_EXEC = gdb --args
 endif
 
-# Sanitizer detection
-SANITIZE		:= $(shell $(CC) -fsanitize=address -x c -c /dev/null -o /dev/null 2>/dev/null && echo "-fsanitize=address -fsanitize=undefined" || echo "")
+SANITIZE				:= $(shell $(C_COMPILER) -fsanitize=address -x c -c /dev/null -o /dev/null 2>/dev/null \
+ 							&& echo "-fsanitize=address -fsanitize=undefined" || echo "")
 
-# Progress Tracking
-TOTAL_FILES		:= $(words $(SRCS))
-TOTAL_TESTS		:= $(words $(TESTS_SRCS))
-CURRENT_FILE	:= 0
+# ============================================================================ #
+# Principal Rules
+# ============================================================================ #
+all: $(NAME)
 
-# Main targets
-all:	create_dirs $(NAME)
+$(NAME): $(RELEASE_OBJS)
+	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@"
+	@$(AR) $(NAME) $(RELEASE_OBJS)
 
-$(NAME): $(OBJS)
-	@echo "Compiling library..."
-	@$(AR) ${NAME} ${OBJS}
-	@echo "Library $(NAME) successfully created"
+debug_lib: $(DEBUG_NAME)
 
-# Directory creation
-create_dirs:
-	@$(MKDIR) $(OBJ_SUBDIRS)
-	@echo "Created objects directories"
+$(DEBUG_NAME): $(DEBUG_OBJS)
+	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@ (debug)"
+	@$(AR) $(DEBUG_NAME) $(DEBUG_OBJS)
 
-create_debug_dirs:
-	@$(MKDIR) $(DEBUG_SUBDIRS)
-	@echo "Created debug objects directories"
+sanitize_lib: $(SANITIZED_NAME)
 
-create_tests_dirs:
-	@$(MKDIR) $(TEST_SUBDIRS)
-	@echo "Created tests objects directories"
+$(SANITIZED_NAME): $(SAN_OBJS)
+	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$@ (ASan+UBSan)"
+	@$(AR) $(SANITIZED_NAME) $(SAN_OBJS)
 
-# Compilation rules
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
-	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
-	@printf "[%3d%%] Compiling %s\n" $(PROGRESS) "$<"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Compile complete!\n"; fi
+# ============================================================================ #
+# Compilation rules (Pattern Rules)
+# ============================================================================ #
+# Compilation of C sources (library)
+$(LIB_BUILD_RELEASE_DIR)/%.o: $(SOURCE_DIR)/%.c
+	@$(MKDIR) $(@D)
+	@printf "[\033[32mCOMPILING\033[0m] %-35s\n" "$< (release)"
+	@$(C_COMPILER) $(C_FLAGS_RELEASE) -c $< -o $@
 
-$(DEBUG_DIR)/%.o: $(SRCS_DIR)/%.c
-	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
-	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_FILES)))
-	@printf "[%3d%%] Debug-compiling %-30s\r" $(PROGRESS) "$<"
-	@$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
-	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then printf "\n[100%%] Debug compile complete!\n"; fi
+$(LIB_BUILD_DEBUG_DIR)/%.o: $(SOURCE_DIR)/%.c
+	@$(MKDIR) $(@D)
+	@printf "[\033[32mCOMPILING\033[0m] %-35s\n" "$< (debug)"
+	@$(C_COMPILER) $(C_FLAGS_DEBUG) -c $< -o $@
 
-$(TESTS_OBJS_DIR)/%.o: $(TESTS_DIR)/%.cpp
-	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
-	@$(eval PROGRESS=$(shell expr $(CURRENT_FILE) \* 100 / $(TOTAL_TESTS)))
-	@printf "[%3d%%] Compiling test %s\n" $(PROGRESS) "$<"
-	@$(CXX) $(CXX_FLAGS) -c $< -o $@
-	@if [ $(CURRENT_FILE) -eq $(TOTAL_TESTS) ]; then printf "\n[100%%] Tests compile complete!\n"; fi
+$(LIB_BUILD_SAN_DIR)/%.o: $(SOURCE_DIR)/%.c
+	@$(MKDIR) $(@D)
+	@printf "[\033[32mCOMPILING\033[0m] %-35s\n" "$< (ASan+UBSan)"
+	@$(C_COMPILER) $(C_FLAGS_SAN) -c $< -o $@
 
-# Test targets
-tests: create_dirs $(NAME) create_tests_dirs $(TESTS_OBJS)
-	@echo "Linking tests..."
-	@$(CXX) $(CXX_FLAGS) -o $(TESTS_BIN) $(TESTS_OBJS) $(NAME) $(GTEST_FLAGS)
+# Compilation of CXX sources (tests)
+$(TESTS_BUILD_RELEASE_DIR)/%.o: $(TESTS_DIR)/%.cpp
+	@$(MKDIR) $(@D)
+	@printf "[\033[34mCOMPILING\033[0m] %-35s\n" "$< (test release)"
+	@$(CXX_COMPILER) $(CXX_FLAGS_RELEASE) -c $< -o $@
+
+$(TESTS_BUILD_DEBUG_DIR)/%.o: $(TESTS_DIR)/%.cpp
+	@$(MKDIR) $(@D)
+	@printf "[\033[34mCOMPILING\033[0m] %-35s\n" "$< (test debug)"
+	@$(CXX_COMPILER) $(CXX_FLAGS_DEBUG) -c $< -o $@
+
+$(TESTS_BUILD_SAN_DIR)/%.o: $(TESTS_DIR)/%.cpp
+	@$(MKDIR) $(@D)
+	@printf "[\033[34mCOMPILING\033[0m] %-35s\n" "$< (test ASan+UBSan)"
+	@$(CXX_COMPILER) $(CXX_FLAGS_SAN) -c $< -o $@
+
+# ============================================================================ #
+# Test rules
+# ============================================================================ #
+tests_build: $(NAME) $(TESTS_OBJS_RELEASE)
+	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$(TESTS_BIN)"
+	@$(CXX_COMPILER) $(CXX_FLAGS_RELEASE) -o $(TESTS_BIN) $(TESTS_OBJS_RELEASE) $(NAME) $(GTEST_FLAGS)
+
+tests_run: tests_build
 	@echo "Running tests..."
 	@./$(TESTS_BIN)
 
-tests-build: create_dirs $(NAME) create_tests_dirs $(TESTS_OBJS)
-	@echo "Linking tests..."
-	@$(CXX) $(CXX_FLAGS) -o $(TESTS_BIN) $(TESTS_OBJS) $(NAME) $(GTEST_FLAGS)
-	@echo "Test binary $(TESTS_BIN) created"
-
-tests-run: tests-build
-	@echo "Running tests..."
-	@./$(TESTS_BIN)
-
-tests-verbose: tests-build
-	@echo "Running tests with verbose output..."
-	@./$(TESTS_BIN) --gtest_verbose
-
-tests-filter: tests-build
+tests_filter: tests_build
 	@echo "Usage: make tests-filter FILTER=TestSuiteName*"
 	@if [ -n "$(FILTER)" ]; then \
-		echo "Running tests matching: $(FILTER)"; \
-		./$(TESTS_BIN) --gtest_filter="$(FILTER)"; \
+	   echo "Running tests matching: $(FILTER)"; \
+	   ./$(TESTS_BIN) --gtest_filter="$(FILTER)"; \
 	else \
-		echo "Please specify FILTER=pattern"; \
-		echo "Example: make tests-filter FILTER='*Strlen*'"; \
+	   echo "Please specify FILTER=pattern"; \
+	   echo "Example: make tests-filter FILTER='*Strlen*'"; \
 	fi
 
-tests-sanitize: CFLAGS += $(SANITIZE)
-tests-sanitize: CXX_FLAGS += $(SANITIZE)
-tests-sanitize: fclean
+tests_debug: $(DEBUG_NAME) $(TESTS_OBJS_DEBUG)
+	@printf "[\033[33mLINKING\033[0m]   %-35s\n" "$(TESTS_DEBUG) (debug)"
+	@$(CXX_COMPILER) $(CXX_FLAGS_DEBUG) -o $(TESTS_DEBUG) $(TESTS_OBJS_DEBUG) $(DEBUG_NAME) $(GTEST_FLAGS)
+	@echo "Debug tests ready. Run with: $(DEBUGGER_EXEC) ./$(TESTS_DEBUG)"
+
+tests_sanitize: $(SANITIZED_NAME) $(TESTS_OBJS_SAN)
 	@if [ -z "$(SANITIZE)" ]; then \
-		echo "Address sanitizer not supported on this system"; \
-		$(MAKE) tests; \
-	else \
-		echo "Compiling with Address Sanitizer"; \
-		$(MAKE) $(NAME); \
-		$(MAKE) create_tests_dirs; \
-		$(MAKE) CURRENT_FILE=0 tests-sanitize-compile; \
-		$(CXX) $(CXX_FLAGS) -o $(TESTS_SANITIZE) $(TESTS_OBJS) $(NAME) $(GTEST_FLAGS); \
-		echo "Running sanitized tests..."; \
-		./$(TESTS_SANITIZE); \
+  		echo "Address sanitizer not supported on this system. Running regular tests."; \
+  		$(MAKE) tests_debug; \
+  else \
+	   printf "[\033[33mLINKING\033[0m]   %-35s\n" "$(TESTS_SANITIZE) (ASan+UBSan)"; \
+	   $(CXX_COMPILER) $(CXX_FLAGS_SAN) -o $(TESTS_SANITIZE) $(TESTS_OBJS_SAN) $(SANITIZED_NAME) $(GTEST_FLAGS); \
+	   printf "[\033[34mSanitized tests ready\033[0m]. Run with: ./$(TESTS_SANITIZE)"; \
 	fi
 
-tests-sanitize-compile: $(TESTS_OBJS)
-
-debug: CURRENT_FILE := 0
-debug: create_debug_dirs debug_lib
-	@echo "Debug build complete for $(DEBUGGER)"
-	@echo "Run your program with: $(DEBUGGER_EXEC) ./your_program"
-	@$(MAKE) clean
-
-debug_lib: $(DEBUG_OBJS)
-	@echo "Compiling debug library..."
-	@$(AR) $(NAME) $(DEBUG_OBJS)
-
-debug-tests: debug create_tests_dirs
-	@echo "Compiling debug tests..."
-	@$(MAKE) CURRENT_FILE=0 CXXFLAGS="$(CXXFLAGS) $(DEBUG_FLAGS)" $(TESTS_OBJS)
-	@$(CXX) $(CXXFLAGS) $(DEBUG_FLAGS) -o $(TESTS_BIN) $(TESTS_OBJS) $(NAME) $(GTEST_FLAGS)
-	@echo "Debug tests ready. Run with: $(DEBUGGER_EXEC) ./$(TESTS_BIN)"
-
-sanitize: CFLAGS += $(SANITIZE)
-sanitize: CURRENT_FILE := 0
-sanitize: fclean $(OBJS_DIR)
-	@if [ -z "$(SANITIZE)" ]; then \
-		echo "Address sanitizer not supported on this system"; \
-		$(MAKE) all; \
-	else \
-		echo "Compiling with Address Sanitizer"; \
-		$(MAKE) all; \
-		echo "Address Sanitizer build complete"; \
-	fi
-
+# ============================================================================ #
+# Cleaning and utils Rules
+# ============================================================================ #
 clean:
-	@$(RMDIR) $(OBJS_DIR) 2>/dev/null || true
-	@$(RMDIR) $(DEBUG_DIR) 2>/dev/null || true
-	@$(RMDIR) $(TESTS_OBJS_DIR) 2>/dev/null || true
-	@echo "Objects removed"
+	@printf "[\033[31mCLEANING\033[0m]  %-35s\n" "build directories"
+	@$(RMD) $(BUILD_DIR)
 
 fclean: clean
-	@$(RM) $(NAME) 2>/dev/null || true
-	@$(RM) $(TESTS_BIN) 2>/dev/null || true
-	@$(RM) $(TESTS_SANITIZE) 2>/dev/null || true
-	@echo "Library and binaries removed"
+	@printf "[\033[31mCLEANING\033[0m]  %-35s\n" "executables"
+	@$(RMF) $(NAME) $(DEBUG_NAME) $(SANITIZED_NAME) $(TESTS_BIN) $(TESTS_DEBUG) $(TESTS_SANITIZE)
 
 re: fclean all
 
-re-tests: fclean tests
+re_tests: fclean tests_build
 
-debug-vars:
+# ============================================================================ #
+# Help and debug rules
+# ============================================================================ #
+debug_vars:
 	@echo "DETECTED_OS: $(DETECTED_OS)"
-	@echo "SRCS_DIR: $(SRCS_DIR)"
+	@echo "SOURCE_DIR: $(SOURCE_DIR)"
 	@echo "TESTS_DIR: $(TESTS_DIR)"
 	@echo "SRCS: $(SRCS)"
 	@echo "TESTS_SRCS: $(TESTS_SRCS)"
-	@echo "OBJS: $(OBJS)"
-	@echo "TESTS_OBJS: $(TESTS_OBJS)"
-	@echo "TOTAL_FILES: $(TOTAL_FILES)"
-	@echo "TOTAL_TESTS: $(TOTAL_TESTS)"
+	@echo "RELEASE_OBJS: $(RELEASE_OBJS)"
+	@echo "DEBUG_OBJS: $(DEBUG_OBJS)"
+	@echo "SAN_OBJS: $(SAN_OBJS)"
+	@echo "TESTS_OBJS_RELEASE: $(TESTS_OBJS_RELEASE)"
+	@echo "TESTS_OBJS_DEBUG: $(TESTS_OBJS_DEBUG)"
+	@echo "TESTS_OBJS_SAN: $(TESTS_OBJS_SAN)"
 	@echo "SANITIZE: $(SANITIZE)"
 
 norm:
-	@echo "Checking norminette..."
-	@norminette $$(find $(INCS_DIR) -type f -name "*.h" 2>/dev/null) || true
-	@norminette $$(find $(SRCS_DIR) -type f -name "*.c" 2>/dev/null) || true
+	@echo "Checking 42 norm..."
+	@norminette $$(find $(INCLUDE_DIR) -type f -name "*.h" 2>/dev/null) || true
+	@norminette $$(find $(SOURCE_DIR) -type f -name "*.c" 2>/dev/null) || true
 
-check-gtest:
+check_gtest:
 	@echo "Checking GTest installation..."
 	@pkg-config --exists gtest && echo "✓ GTest found" || echo "✗ GTest not found. Install with: sudo dnf install gtest-devel"
 	@echo "GTest version: $$(pkg-config --modversion gtest 2>/dev/null || echo 'not found')"
@@ -249,33 +266,40 @@ info:
 	@echo "├─────────────────────────────────────────────────────────────┤"
 	@printf "│ %-59s │\n" "Library targets:"
 	@printf "│   %-19s : %-35s │\n" "make" "compile the main library ($(NAME))"
-	@printf "│   %-19s : %-35s │\n" "make debug" "compile with debug symbols ($(DEBUGGER))"
-	@printf "│   %-19s : %-35s │\n" "make sanitize" "compile with address sanitizer"
+	@printf "│   %-19s : %-35s │\n" "make debug_lib" "compile with debug symbols ($(DEBUGGER))"
+	@printf "│   %-19s : %-35s │\n" "make sanitize_lib" "compile with address sanitizer"
 	@echo "├─────────────────────────────────────────────────────────────┤"
 	@printf "│ %-59s │\n" "Test targets:"
-	@printf "│   %-19s : %-35s │\n" "make tests" "compile library + tests and run"
-	@printf "│   %-19s : %-35s │\n" "make tests-build" "only compile tests binary"
-	@printf "│   %-19s : %-35s │\n" "make tests-run" "run existing tests binary"
-	@printf "│   %-19s : %-35s │\n" "make tests-verbose" "run tests with verbose output"
-	@printf "│   %-19s : %-35s │\n" "make tests-filter" "run filtered tests (FILTER=pattern)"
-	@printf "│   %-19s : %-35s │\n" "make tests-sanitize" "run sanitized tests"
-	@printf "│   %-19s : %-35s │\n" "make debug-tests" "compile tests with debug symbols"
+	@printf "│   %-19s : %-35s │\n" "make tests_build" "only compile tests binary"
+	@printf "│   %-19s : %-35s │\n" "make tests_run" "run existing tests binary"
+	@printf "│   %-19s : %-35s │\n" "make tests_filter" "run filtered tests (FILTER=pattern)"
+	@printf "│   %-19s : %-35s │\n" "make tests_debug" "compile tests with debug symbols"
+	@printf "│   %-19s : %-35s │\n" "make tests_sanitize" "run sanitized tests"
 	@echo "├─────────────────────────────────────────────────────────────┤"
 	@printf "│ %-59s │\n" "Utility targets:"
 	@printf "│   %-19s : %-35s │\n" "make clean" "remove object files"
 	@printf "│   %-19s : %-35s │\n" "make fclean" "remove objects, library and bins"
 	@printf "│   %-19s : %-35s │\n" "make re" "execute fclean then all"
-	@printf "│   %-19s : %-35s │\n" "make re-tests" "execute fclean then tests"
+	@printf "│   %-19s : %-35s │\n" "make re_tests" "execute fclean then tests"
+	@echo "├─────────────────────────────────────────────────────────────┤"
+	@printf "│ %-59s │\n" "Help and debug targets:"
+	@printf "│   %-19s : %-35s │\n" "make debug_vars" "show variables for debugging"
 	@printf "│   %-19s : %-35s │\n" "make norm" "run norminette on source files"
-	@printf "│   %-19s : %-35s │\n" "make check-gtest" "verify GTest installation"
-	@printf "│   %-19s : %-35s │\n" "make debug-vars" "show variables for debugging"
+	@printf "│   %-19s : %-35s │\n" "make check_gtest" "verify GTest installation"
 	@echo "└─────────────────────────────────────────────────────────────┘"
 	@printf "Tests directory: %s/ (*.cpp files)\n" "$(TESTS_DIR)"
 
-.PHONY: all debug debug_lib sanitize clean fclean re re-tests info create_dirs \
-        create_debug_dirs create_tests_dirs debug-vars norm tests tests-build \
-        tests-run tests-verbose tests-filter tests-sanitize debug-tests check-gtest
+# ============================================================================ #
+# Phony and includes configuration
+# ============================================================================ #
+.PHONY: all debug_lib sanitize_lib \
+        tests_build tests_run tests_filter \
+      	tests_debug tests_sanitize \
+        clean fclean re re_tests \
+        debug_vars norm check_gtest info
 
--include $(DEPS) $(DEBUG_DEPS) $(TESTS_DEPS)
+-include $(RELEASE_DEPS) $(DEBUG_DEPS) $(SAN_DEPS) $(TESTS_DEPS_RELEASE) $(TESTS_DEPS_DEBUG) $(TESTS_DEPS_SAN)
 
-.SECONDARY: $(OBJS)
+# QoL
+.SECONDARY: $(RELEASE_OBJS) $(DEBUG_OBJS) $(SAN_OBJS) $(TESTS_OBJS_RELEASE) $(TESTS_OBJS_DEBUG) $(TESTS_OBJS_SAN)
+.SUFFIXES:
