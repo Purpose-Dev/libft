@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/10/26 19:03:11 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/10/26 21:55:44 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ DEBUG_DEPS				:= $(DEBUG_OBJS:.o=.d)
 SAN_DEPS				:= $(SAN_OBJS:.o=.d)
 
 # ============================================================================ #
-# Object and dependencies (library)
+# Object and dependencies (tests)
 # ============================================================================ #
 TESTS_OBJS_RELEASE		:= $(addprefix $(TESTS_BUILD_RELEASE_DIR)/, $(TESTS_SRCS:.cpp=.o))
 TESTS_OBJS_DEBUG		:= $(addprefix $(TESTS_BUILD_DEBUG_DIR)/, $(TESTS_SRCS:.cpp=.o))
