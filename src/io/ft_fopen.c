@@ -6,11 +6,12 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 05:00:52 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/10/26 19:57:02 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/11/05 09:53:39 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "core/string/ft_string.h"
 #include "io/ft_io.h"
@@ -35,21 +36,33 @@ static int	get_flags(const char *mode)
 	return (-1);
 }
 
+static size_t	get_buffer_size(const int fd)
+{
+	struct stat	st;
+
+	if (ft_fstat(fd, &st) == -1)
+		return (1024);
+	if (S_ISREG(st.st_mode))
+		return (FT_BUFFER_SIZE);
+	return (1024);
+}
+
 static t_ft_file	*init_file_struct(const int fd)
 {
-	t_ft_file	*file;
+	const size_t	buf_size = get_buffer_size(fd);
+	t_ft_file		*file;
 
 	file = malloc(sizeof(t_ft_file));
 	if (!file)
 		return (NULL);
-	file->buffer = malloc(FT_BUFFER_SIZE);
+	file->buffer = malloc(buf_size);
 	if (!file->buffer)
 	{
 		free(file);
 		return (NULL);
 	}
 	file->fd = fd;
-	file->buffer_size = FT_BUFFER_SIZE;
+	file->buffer_size = buf_size;
 	file->buffer_pos = 0;
 	file->buffer_len = 0;
 	file->eof = 0;
