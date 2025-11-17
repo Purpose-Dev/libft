@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 09:16:36 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/11/07 09:19:21 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:37:04 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,35 @@ typedef struct s_logger
 }	t_logger;
 
 extern t_logger	g_logger;
+
+inline const char	*get_level_string(const t_log_level level)
+{
+	if (level == LOG_DEBUG)
+		return ("DEBUG");
+	if (level == LOG_ERROR)
+		return ("ERROR");
+	if (level == LOG_FATAL)
+		return ("FATAL");
+	if (level == LOG_INFO)
+		return ("INFO ");
+	if (level == LOG_WARN)
+		return ("WARN ");
+	return ("?????");
+}
+
+inline const char	*get_level_color(const t_log_level level)
+{
+	if (level == LOG_DEBUG)
+		return (CLR_BLUE);
+	if (level == LOG_ERROR)
+		return (CLR_RED);
+	if (level == LOG_FATAL)
+		return (CLR_MAGENTA);
+	if (level == LOG_INFO)
+		return (CLR_GREEN);
+	if (level == LOG_WARN)
+		return (CLR_YELLOW);
+	return (CLR_RESET);
+}
 
 #endif // LOG_INTERNAL_H

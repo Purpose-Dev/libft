@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 09:07:36 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/11/17 14:28:46 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:36:53 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,6 @@ typedef struct s_log
 	t_log_level	level;
 	char		padding[4];
 }	t_log;
-
-static inline const char	*get_level_string(const t_log_level level)
-{
-	if (level == LOG_DEBUG)
-		return ("DEBUG");
-	if (level == LOG_ERROR)
-		return ("ERROR");
-	if (level == LOG_FATAL)
-		return ("FATAL");
-	if (level == LOG_INFO)
-		return ("INFO ");
-	if (level == LOG_WARN)
-		return ("WARN ");
-	return ("?????");
-}
-
-static inline const char	*get_level_color(const t_log_level level)
-{
-	if (level == LOG_DEBUG)
-		return (CLR_BLUE);
-	if (level == LOG_ERROR)
-		return (CLR_RED);
-	if (level == LOG_FATAL)
-		return (CLR_MAGENTA);
-	if (level == LOG_INFO)
-		return (CLR_GREEN);
-	if (level == LOG_WARN)
-		return (CLR_YELLOW);
-	return (CLR_RESET);
-}
 
 static inline void	init_log(t_log *log, t_log_sink *sink,
 				const t_log_level level, char *module)
@@ -82,11 +52,10 @@ static void	log_write_one(const t_log log, const char *format, va_list args)
 	ft_fprintf(log.sink->stream, "\n");
 }
 
-void	ft_log(const t_log_level level, const char *module, const char *format,
-				...)
+void	ft_vlog(const t_log_level level, const char *module,
+			const char *format, va_list args)
 {
 	t_log	log;
-	va_list	args;
 	int		i;
 
 	pthread_mutex_lock(&g_logger.mutex);
@@ -95,18 +64,27 @@ void	ft_log(const t_log_level level, const char *module, const char *format,
 		pthread_mutex_unlock(&g_logger.mutex);
 		return ;
 	}
-	va_start(args, format);
 	i = 0;
 	while (i < g_logger.sink_count)
 	{
 		if (g_logger.sinks[i].stream
 			&& level >= g_logger.sinks[i].min_level)
 		{
-			init_log(&log, &g_logger.sinks[i], level, (char *)(intptr_t)module);
+			init_log(&log, &g_logger.sinks[i], level,
+				(char *)(intptr_t)module);
 			log_write_one(log, format, args);
 		}
 		i++;
 	}
-	va_end(args);
 	pthread_mutex_unlock(&g_logger.mutex);
+}
+
+void	ft_log(const t_log_level level, const char *module, const char *format,
+				...)
+{
+	va_list	args;
+
+	va_start(args, format);
+	ft_vlog(level, module, format, args);
+	va_end(args);
 }

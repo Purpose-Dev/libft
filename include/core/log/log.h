@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 08:53:41 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/11/07 09:27:08 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:37:37 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	log_set_quiet(bool quiet);
 void	log_set_color(bool enable);
 
 void	ft_log(t_log_level level, const char *module, const char *format, ...);
+void	ft_vlog(t_log_level level, const char *module, const char *format,
+			va_list args);
 void	log_debug(const char *module, const char *format, ...);
 void	log_error(const char *module, const char *format, ...);
 void	log_fatal(const char *module, const char *format, ...);
