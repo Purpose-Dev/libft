@@ -6,7 +6,7 @@
 #    By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 22:29:30 by rel-qoqu          #+#    #+#              #
-#    Updated: 2025/10/26 21:55:44 by rel-qoqu         ###   ########.fr        #
+#    Updated: 2025/11/29 14:45:47 by rel-qoqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ AR						:= ar rcs
 RMF						:= rm -f
 RMD						:= rm -rf
 MKDIR					:= mkdir -p
+NORMI					:= norminette
 
 # ============================================================================ #
 # Directories
@@ -250,10 +251,25 @@ debug_vars:
 	@echo "TESTS_OBJS_SAN: $(TESTS_OBJS_SAN)"
 	@echo "SANITIZE: $(SANITIZE)"
 
+define AWK_NORM
+BEGIN { \
+	RED="\033[31m"; \
+	RESET="\033[0m"; \
+} \
+!/OK!$$/ { printf RED"%s"RESET"\n", $$0 }
+endef
+
 norm:
-	@echo "Checking 42 norm..."
-	@norminette $$(find $(INCLUDE_DIR) -type f -name "*.h" 2>/dev/null) || true
-	@norminette $$(find $(SOURCE_DIR) -type f -name "*.c" 2>/dev/null) || true
+	@tmp_output=$$(mktemp); \
+	$(NORMI) $(INCLUDE_DIR) $(SOURCE_DIR) > $$tmp_output 2>&1; norm_status=$$? || true; \
+	awk '$(AWK_NORM)' < $$tmp_output; \
+	rm $$tmp_output; \
+	if [ $$norm_status -eq 0 ]; then \
+		printf "\033[32mNorminette check successful.\033[0m\n"; \
+	else \
+		printf "\033[31mNorminette check found issues.\033[0m\n"; \
+		exit 1; \
+	fi
 
 check_gtest:
 	@echo "Checking GTest installation..."

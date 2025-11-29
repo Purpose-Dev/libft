@@ -6,7 +6,7 @@
 /*   By: rel-qoqu <rel-qoqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 17:43:51 by rel-qoqu          #+#    #+#             */
-/*   Updated: 2025/07/13 22:25:25 by rel-qoqu         ###   ########.fr       */
+/*   Updated: 2025/11/29 14:35:03 by rel-qoqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int					sb_delete_range(t_string_builder *sb, size_t start,
 
 // Utility operations
 char				*sb_to_string(t_string_builder *sb);
+char				*sb_to_string_and_destroy(t_string_builder *sb);
 size_t				sb_length(t_string_builder *sb);
 size_t				sb_capacity(t_string_builder *sb);
 int					sb_is_empty(t_string_builder *sb);
